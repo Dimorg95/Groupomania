@@ -1,0 +1,36 @@
+<mat-card class="primaryContainer">
+  <mat-card-title class="centerTitle">Bienvenue sur Groupomania</mat-card-title>
+  <img
+    mat-card-image
+    src="../../assets/images/icon-left-font-monochrome-black.svg"
+    alt="Logo Groupomania black"
+  />
+  <mat-card-content class="container">
+    <mat-card class="login">
+      <mat-card-title>Êtes-vous déjà inscrit ? </mat-card-title>
+      <!-- <a href="#">Connectez-vous !!</a> -->
+      <button
+        mat-flat-button
+        [@btnAnimation]="btnAnimationState"
+        (mouseenter)="onBtnMouseEnter()"
+        (mouseleave)="onBtnMouseLeave()"
+        (click)="goToLogin()"
+      >
+        Connectez-vous !
+      </button>
+    </mat-card>
+    <mat-card class="signup">
+      <mat-card-title>Pas encore inscrit ? </mat-card-title>
+      <!-- <a href="#">Inscrivez-vous !!</a> -->
+      <button
+        mat-flat-button
+        [@btnAnimation]="btnAnimationState"
+        (mouseenter)="onBtnMouseEnter()"
+        (mouseleave)="onBtnMouseLeave()"
+        (click)="goToSignup()"
+      >
+        Inscrivez-vous !
+      </button>
+    </mat-card>
+  </mat-card-content>
+</mat-card>

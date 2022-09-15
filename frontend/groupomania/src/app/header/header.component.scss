@@ -1,0 +1,27 @@
+header {
+  background: radial-gradient(
+    circle,
+    rgba(253, 45, 1, 1) 54%,
+    rgba(255, 215, 215, 1) 91%
+  );
+
+  margin-bottom: 1.5rem;
+  padding: 10px 0 10px 0;
+  height: 10rem;
+  width: auto;
+
+  img {
+    height: 5rem;
+    width: 50%;
+    text-align: center;
+  }
+  h1 {
+    font-size: 1.8rem;
+    width: auto;
+    text-align: center;
+  }
+}
+
+.imageContainer {
+  text-align: center;
+}

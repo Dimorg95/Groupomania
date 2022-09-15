@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
+const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
 const postRoutes = require('./routes/post');
 const userRoutes = require('./routes/user');
 const path = require('path');
@@ -18,6 +19,13 @@ mongoose
   .then(() => console.log('Connexion à Mongodb réussie ! '))
   .catch(() => console.log('Connexion à MongoDB échouée ! '));
 
+//Gere le probléme de l'image illisible avec Helmet
+
+app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy());
+app.use(helmet.crossOriginResourcePolicy({ policy: 'same-site' }));
+app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
+
 //Erreur CORS
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -31,6 +39,16 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+//Nettoye les données recues (enlevement de clée commencant par $)
+//pour eviter l'injection
+app.use(
+  mongoSanitize({
+    allowDots: true,
+    replaceWith: '_',
+  })
+);
+
 app.use(express.json());
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
