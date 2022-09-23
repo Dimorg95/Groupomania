@@ -1,0 +1,78 @@
+<div class="mainContainer">
+  <mat-card class="signupForm" [formGroup]="mainForm">
+    <mat-card-title>Inscription</mat-card-title>
+    <mat-card class="form-card">
+      <mat-card-subtitle>Prénom / Pseudonyme</mat-card-subtitle>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Prénom/Pseudonyme</mat-label>
+        <input type="text" matInput formControlName="name" />
+        <mat-error>Ce champ est requis</mat-error>
+      </mat-form-field>
+    </mat-card>
+    <mat-card class="form-card" [formGroup]="emailForm">
+      <mat-card-subtitle>Adresse email</mat-card-subtitle>
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input
+            type="text"
+            placeholder="test@mail.com"
+            matInput
+            formControlName="email"
+          />
+          <mat-error>{{ getFormControlErrorText(emailCtrl) }}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Confirmez votre email</mat-label>
+          <input
+            type="text"
+            placeholder="test@mail.com"
+            matInput
+            formControlName="confirm"
+          />
+          <mat-error>{{ getFormControlErrorText(emailConfirmCtrl) }}</mat-error>
+        </mat-form-field>
+      </div>
+      <small class="error-txt" *ngIf="showEmailError$ | async"
+        >Les deux adresses ne correspondent pas</small
+      >
+    </mat-card>
+    <mat-card class="form-card" [formGroup]="passwordForm">
+      <mat-card-subtitle>Mots de passe</mat-card-subtitle>
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Mot de passe</mat-label>
+          <input type="password" matInput formControlName="password" />
+          <mat-error>{{ getFormControlErrorText(passwordCtrl) }}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Confirmez votre mot de passe</mat-label>
+          <input type="password" matInput formControlName="confirmPassword" />
+          <mat-error>{{
+            getFormControlErrorText(passwordConfirmCtrl)
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <small class="error-txt" *ngIf="showPasswordError$ | async"
+        >Les mots de passe ne correspondent pas</small
+      >
+    </mat-card>
+    <mat-card-actions>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        (click)="onSubmitForm()"
+        [disabled]="mainForm.invalid"
+      >
+        Inscription
+      </button>
+    </mat-card-actions>
+    <!-- <mat-spinner *ngIf="loading"></mat-spinner> -->
+    <div class="option">
+      <p>Vous avez déjà un compte ?</p>
+      <a href="#" routerLink="/login">Connectez-vous</a>
+    </div>
+  </mat-card>
+</div>

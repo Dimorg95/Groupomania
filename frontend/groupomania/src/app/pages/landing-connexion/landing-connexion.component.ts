@@ -5,7 +5,15 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-connexion',
@@ -16,7 +24,7 @@ import { Component, Input, OnInit } from '@angular/core';
       state(
         'default',
         style({
-          transform: 'scale(1)  skew(0deg)',
+          transform: 'scale(1)',
 
           'background-color': 'rgba(130, 141, 213, 1)',
           'z-index': 1,
@@ -25,7 +33,7 @@ import { Component, Input, OnInit } from '@angular/core';
       state(
         'active',
         style({
-          transform: 'scale(1.1)  skew(5deg)',
+          transform: 'scale(1.1)',
           'background-color': 'rgb(75, 93, 216)',
           'z-index': 2,
           color: 'rgba(255, 215, 215)',
@@ -37,12 +45,31 @@ import { Component, Input, OnInit } from '@angular/core';
   ],
 })
 export class LandingConnexionComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router, private renderer: Renderer2) {}
 
   btnAnimationState: 'default' | 'active' = 'default';
 
   ngOnInit(): void {}
 
+  ngAfterViewInit() {
+    console.log(this.loginbutton.nativeElement);
+  }
+
+  ////////////////////////////
+  @ViewChild('loginbutton') loginbutton!: ElementRef<HTMLButtonElement>;
+
+  ////////////////////////////////
+  getAnimation() {
+    return [
+      { transform: 'scale(1.1)' },
+      { backgroundColor: 'rgb(75, 93, 216)' },
+
+      { color: 'rgba(255, 215, 215)' },
+    ];
+  }
+  ////////////////////////////////////
+
+  //Dernier retour en arriv
   onBtnMouseEnter() {
     this.btnAnimationState = 'active';
   }
@@ -52,10 +79,11 @@ export class LandingConnexionComponent implements OnInit {
   }
 
   goToSignup() {
-    console.log('Formulaire signUp');
+    this.router.navigateByUrl('/signup');
   }
 
   goToLogin() {
-    console.log('Formulaire Login');
+    this.router.navigateByUrl('/login');
   }
 }
+//https://stackoverflow.com/questions/32693061/how-can-i-select-an-element-in-a-component-template

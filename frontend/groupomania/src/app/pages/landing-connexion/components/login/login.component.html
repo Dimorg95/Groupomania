@@ -1,0 +1,41 @@
+<div class="mainContainer">
+  <mat-card class="mainLoginForm" [formGroup]="loginForm">
+    <mat-card-title>Connexion</mat-card-title>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input
+        type="text"
+        placeholder="test@mail.com"
+        matInput
+        formControlName="mail"
+      />
+      <mat-error>Ce champ est requis</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" color="white">
+      <mat-label>Mot de passe</mat-label>
+      <input
+        type="password"
+        placeholder="Just a test"
+        matInput
+        formControlName="password"
+      />
+      <mat-error>Ce champ est requis</mat-error>
+    </mat-form-field>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        type="submit"
+        (click)="onSubmitLogin()"
+        [disabled]="loginForm.invalid"
+      >
+        Connexion
+      </button>
+    </mat-card-actions>
+
+    <mat-spinner *ngIf="loading" mode="indeterminate"></mat-spinner>
+  </mat-card>
+  <div class="option">
+    <p>Vous n'avez pas de compte ?</p>
+    <a href="#" routerLink="/signup">Créez en un ! </a>
+  </div>
+</div>

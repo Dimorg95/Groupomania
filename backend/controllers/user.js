@@ -43,10 +43,10 @@ exports.login = (req, res, next) => {
             });
           }
           res.status(200).json({
-            userName: user.name,
-            userEmail: req.body.email,
+            // userName: user.name,
+            // userEmail: req.body.email,
             userId: user._id,
-            isAdmin: user.isAdmin,
+            // isAdmin: user.isAdmin,
             token: jwt.sign(
               { userId: user.id },
               process.env.ACCES_SECRET_TOKEN,
