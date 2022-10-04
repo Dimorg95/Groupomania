@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { loginSignupService } from '../../services/connexion.service';
-import { catchError, EMPTY, tap } from 'rxjs';
+import { catchError, delay, EMPTY, tap } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,6 +12,9 @@ export class LoginComponent implements OnInit {
   loading = false;
   passwordRegex!: RegExp;
   errorMsg!: string;
+  email: string = '';
+  password: string = '';
+  isAdmin!: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,21 +34,25 @@ export class LoginComponent implements OnInit {
         null,
         [Validators.required, Validators.pattern(this.passwordRegex)],
       ],
+      isAdmin: [],
     });
   }
 
   onSubmitLogin() {
     this.loading = true;
-    console.log('Fonctionne ? ');
-    const email = this.loginForm.get('email')!.value;
-    const password = this.loginForm.value.password;
-    console.log(email);
+
+    this.email = this.loginForm.get('mail')?.value;
+    this.password = this.loginForm.value.password;
+    this.isAdmin = this.loginForm.value.isAdmin;
+    console.log(this.email);
+    console.log(this.password);
+    console.log(this.isAdmin);
     this.connect
-      .userLogin(email, password)
+      .userLogin(this.email, this.password, this.isAdmin)
       .pipe(
+        delay(1500),
         tap(() => {
           this.loading = false;
-          console.log('Utilisateur connecté');
         }),
         catchError((error) => {
           this.loading = false;
@@ -57,4 +64,4 @@ export class LoginComponent implements OnInit {
   }
 }
 
-//Cela ne fonctionne pas !!! a revoir dans le Week-end
+//Cela ne fonctionne pas !!! a revoir !!!

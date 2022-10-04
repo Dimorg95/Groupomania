@@ -29,6 +29,7 @@ exports.signup = (req, res, next) => {
 exports.login = (req, res, next) => {
   User.findOne({ email: req.body.email })
     .then((user) => {
+      console.log(req.body.email);
       if (!user) {
         return res.status(401).json({
           error: 'Utilisateur non trouvé',
@@ -46,9 +47,9 @@ exports.login = (req, res, next) => {
             // userName: user.name,
             // userEmail: req.body.email,
             userId: user._id,
-            // isAdmin: user.isAdmin,
+            isAdmin: user.isAdmin,
             token: jwt.sign(
-              { userId: user.id },
+              { userId: user.id, isAdmin: user.isAdmin },
               process.env.ACCES_SECRET_TOKEN,
               { expiresIn: '24h' }
             ),

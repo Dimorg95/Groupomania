@@ -6,4 +6,5 @@
     />
   </div>
   <h1>Votre réseaux social d'entreprise</h1>
+  <button (click)="onLogout()" *ngIf="isAuth$ | async">Déconnexion</button>
 </header>

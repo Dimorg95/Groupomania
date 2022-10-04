@@ -6,7 +6,15 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Observable, map, tap, catchError, EMPTY } from 'rxjs';
+import {
+  Observable,
+  map,
+  tap,
+  catchError,
+  EMPTY,
+  switchMap,
+  delay,
+} from 'rxjs';
 import { loginSignupService } from '../../services/connexion.service';
 import { confirmEqualValidator } from '../../validators/confirm-equal.validator';
 
@@ -46,14 +54,16 @@ export class SignUpComponent implements OnInit {
     this.initFormObservable();
   }
 
+  //On init le main Form
   private initMainForm(): void {
     this.mainForm = this.formBuilder.group({
       name: this.nameCtrl,
       email: this.emailForm,
       password: this.passwordForm,
+      isAdmin: [],
     });
   }
-
+  //On init les Observable
   private initFormObservable(): void {
     this.showEmailError$ = this.emailForm.statusChanges.pipe(
       map(
@@ -73,7 +83,7 @@ export class SignUpComponent implements OnInit {
       )
     );
   }
-
+  //On init les controls du formulaire
   private initFormControls(): void {
     //Form name
     this.nameCtrl = this.formBuilder.control('', Validators.required);
@@ -117,22 +127,37 @@ export class SignUpComponent implements OnInit {
       },
       {
         validators: [confirmEqualValidator('password', 'confirmPassword')],
-        updateOn: 'blur',
       }
     );
   }
 
+  //On gere les erreurs
+  getFormControlErrorText(ctrl: AbstractControl) {
+    if (ctrl.hasError('required')) {
+      return 'Ce champ est requis';
+    } else if (ctrl.hasError('email')) {
+      return "Merci d'entrer une adresse mail valide";
+    } else if (ctrl.hasError('pattern')) {
+      return 'Mot de passe incorrect: M, m, 0-9 et 8 caractère minimum';
+    } else {
+      return 'Ce champ contient une erreur';
+    }
+  }
+  //On soumet le formulaire une fois valide
   onSubmitForm() {
     this.loading = true;
     const name = this.mainForm.value.name;
     const email = this.mainForm.value.email.email;
     const password = this.mainForm.value.password.password;
+    const isAdmin = this.mainForm.value.isAdmin;
     this.connect
-      .userSignUp(name, email, password)
+      .userSignUp(name, email, password, isAdmin)
       .pipe(
+        delay(1500),
+        switchMap(() => this.connect.userLogin(email, password, isAdmin)),
         tap((saved) => {
           this.loading = false;
-          console.log('User crée');
+
           if (saved) {
             this.resetForm();
           }
@@ -148,17 +173,5 @@ export class SignUpComponent implements OnInit {
 
   resetForm() {
     this.mainForm.reset();
-  }
-
-  getFormControlErrorText(ctrl: AbstractControl) {
-    if (ctrl.hasError('required')) {
-      return 'Ce champ est requis';
-    } else if (ctrl.hasError('email')) {
-      return "Merci d'entrer une adresse mail valide";
-    } else if (ctrl.hasError('pattern')) {
-      return 'Mot de passe incorrect: majuscule, minuscule, chiffre et 8 caractère minimum';
-    } else {
-      return 'Ce champ contient une erreur';
-    }
   }
 }

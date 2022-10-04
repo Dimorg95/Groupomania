@@ -16,6 +16,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { loginSignupService } from './pages/landing-connexion/services/connexion.service';
 import { httpInterceptorProviders } from './interceptors';
+import { PostListComponent } from './pages/posts/components/post-list/post-list.component';
+import { PostComponent } from './pages/posts/components/post-item/post.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +27,8 @@ import { httpInterceptorProviders } from './interceptors';
     FooterComponent,
     SignUpComponent,
     LoginComponent,
+    PostListComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,

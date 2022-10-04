@@ -4,15 +4,20 @@ import { LoginComponent } from './pages/landing-connexion/components/login/login
 import { SignUpComponent } from './pages/landing-connexion/components/sign-up/sign-up.component';
 
 import { LandingConnexionComponent } from './pages/landing-connexion/landing-connexion.component';
+import { PostListComponent } from './pages/posts/components/post-list/post-list.component';
+import { AuthGuard } from './pages/posts/services/auth-guard.service';
 
 const routes: Routes = [
   { path: '', component: LandingConnexionComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'posts', component: PostListComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  providers: [AuthGuard],
+  //A rajouter dans les route qui on besoin d'une auth
 })
 export class AppRoutingModule {}

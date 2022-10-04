@@ -1,0 +1,96 @@
+.post-card {
+  box-sizing: border-box;
+  box-shadow: lightgray 4px 4px 20px;
+  border-radius: 25px;
+  width: 70%;
+  // height: 80%;
+  height: 40rem;
+  margin: 50px auto;
+  background-color: rgba(255, 215, 215, 0.6458333333333333);
+  padding: 5px;
+}
+
+.createInfo {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.underline {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px dotted black;
+  margin: 10px 0 0 0;
+  h2 {
+    color: #4e5166;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+  h3 {
+    color: #fd2d01;
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+  p {
+    color: #4e5166;
+    font-weight: 500;
+    font-size: 1.1rem;
+    span {
+      font-weight: 800;
+    }
+  }
+}
+
+img {
+  margin-top: 5px;
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+}
+
+.containerDescription {
+  height: 8.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.description {
+  font-size: 1.4rem;
+  text-align: center;
+}
+.likes {
+  display: flex;
+  flex-direction: row;
+  i {
+    font-size: 2rem;
+  }
+
+  p {
+    margin-left: 0.5rem;
+  }
+}
+
+.buttons {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actionButtons {
+  width: 13rem;
+  display: flex;
+  justify-content: space-between;
+  button {
+    background-color: #4e5166;
+    color: white;
+  }
+}
+
+p,
+h2,
+h3 {
+  margin: 0;
+}

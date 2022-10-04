@@ -1,0 +1,32 @@
+<div class="post-card">
+  <div class="createInfo">
+    <div class="underline">
+      <h2>{{ post.title | titlecase }}</h2>
+    </div>
+    <div class="underline"><h3>Email du créateur</h3></div>
+    <div class="underline">
+      <p>
+        Mise en ligne par <span>Machin</span>
+        {{ post.createdDate | date: "le dd MMMM yyyy à HH:mm" }}
+      </p>
+    </div>
+  </div>
+
+  <img [src]="post.imageUrl" [alt]="post.title" />
+  <div class="containerDescription">
+    <p class="description">{{ post.text }}</p>
+    <div class="buttons">
+      <!-- <button mat-icon-button><mat-icon>thumb_up</mat-icon></button> -->
+      <div class="likes">
+        <i class="fas fa-heart"></i>
+        <p>{{ post.likes }}</p>
+      </div>
+
+      <!-- Mettre en place un autre icone pour les likes -->
+      <div class="actionButtons">
+        <button mat-raised-button>Modifier</button>
+        <button mat-raised-button>Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,7 @@ header {
   padding: 10px 0 10px 0;
   height: 10rem;
   width: auto;
+  position: relative;
 
   img {
     height: 5rem;
@@ -23,4 +24,12 @@ header {
 
 .imageContainer {
   text-align: center;
+}
+button {
+  width: 7rem;
+  height: 2rem;
+  position: absolute;
+  top: 80%;
+  left: 45%;
+  transform: (-50%, -50%);
 }
