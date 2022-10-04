@@ -1,13 +1,12 @@
+@import "../../../Scss/variables";
+@import "../../../Scss/mixins";
+
 footer {
   margin-top: 5rem;
   margin-bottom: auto;
   height: 10rem;
   width: 100%;
-  background: radial-gradient(
-    circle,
-    rgba(253, 45, 1, 0.8422273781902552) 54%,
-    rgba(255, 215, 215, 0.8306264501160092) 91%
-  );
+  background: $background-h-f;
 }
 
 ul {
@@ -21,16 +20,14 @@ li {
   text-align: center;
   color: white;
   list-style-type: none;
-  display: flex;
-  flex-direction: column;
+  @include footer-flex;
 }
 
 a {
   width: auto;
-  display: flex;
-  flex-direction: column;
+  @include footer-flex;
   //   color: #4e5166;
-  color: rgb(48, 47, 47);
+  color: $tertiary-color;
 }
 .imgContainer {
   text-align: center;

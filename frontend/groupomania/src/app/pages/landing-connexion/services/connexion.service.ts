@@ -14,6 +14,10 @@ export class loginSignupService {
   private isAdmin!: boolean;
   isAuth$ = new BehaviorSubject<boolean>(false);
 
+  getIsAuth() {
+    return this.isAuth$.value;
+  }
+
   getUserId() {
     return this.userId;
   }
@@ -50,11 +54,11 @@ export class loginSignupService {
           this.userId = userId;
           this.authToken = token;
           this.isAdmin = isAdmin;
-          this.isAuth$.next(true);
           //enregistrer le token dans le local storage
           localStorage.setItem('token', this.authToken);
+          this.isAuth$.next(true);
+
           this.router.navigateByUrl('/posts');
-          //consistance des information connexion angular
         })
       );
   }

@@ -10,10 +10,17 @@ import { PostService } from '../../services/post.service';
 })
 export class PostComponent implements OnInit {
   @Input() post!: Post;
+  user!: any; //
 
   constructor(private postService: PostService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //Pour chaque post faire une requete user grace au userId du post
+    //this.userService.getOneUser().subscribe((result) => {
+    //   this.user = result
+    // })
+    //faire le model user
+  }
 }
 
 //Pourquoi pas rajouter l'email et le name (coté backend) pour s'en servir directement dans le post

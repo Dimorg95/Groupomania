@@ -14,6 +14,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { loginSignupService } from './services/connexion.service';
 
 @Component({
   selector: 'app-landing-connexion',
@@ -45,14 +46,22 @@ import { Router } from '@angular/router';
   ],
 })
 export class LandingConnexionComponent implements OnInit {
-  constructor(private router: Router, private renderer: Renderer2) {}
+  constructor(
+    private router: Router,
+    private renderer: Renderer2,
+    private connect: loginSignupService
+  ) {}
 
   btnAnimationState: 'default' | 'active' = 'default';
 
-  ngOnInit(): void {}
-
-  ngAfterViewInit() {
-    console.log(this.loginbutton.nativeElement);
+  ngOnInit(): void {
+    //a revoir ne fonctionne pas correctement isAuth semble etre false alors qu'on est connecter
+    if (this.connect.getIsAuth() === true) {
+      console.log('On tombe dans le if');
+      this.router.navigateByUrl('/posts');
+    } else {
+      console.log('on tombe dans le Else');
+    }
   }
 
   ////////////////////////////
@@ -69,7 +78,6 @@ export class LandingConnexionComponent implements OnInit {
   }
   ////////////////////////////////////
 
-  //Dernier retour en arriv
   onBtnMouseEnter() {
     this.btnAnimationState = 'active';
   }
@@ -86,4 +94,8 @@ export class LandingConnexionComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 }
-//https://stackoverflow.com/questions/32693061/how-can-i-select-an-element-in-a-component-template
+
+//Ng on init faire un check si isAuth = true , si oui redirection vers post
+
+//ngonInit checker si un token est present, faire une requete de connexion
+//navigate url sur la page post

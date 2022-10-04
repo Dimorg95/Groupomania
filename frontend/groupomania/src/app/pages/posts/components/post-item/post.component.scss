@@ -1,3 +1,6 @@
+@import "../../../../../Scss/mixins";
+@import "../../../../../Scss/variables";
+
 .post-card {
   box-sizing: border-box;
   box-shadow: lightgray 4px 4px 20px;
@@ -6,15 +9,12 @@
   // height: 80%;
   height: 40rem;
   margin: 50px auto;
-  background-color: rgba(255, 215, 215, 0.6458333333333333);
+  background: $background-connexion;
   padding: 5px;
 }
 
 .createInfo {
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
+  @include flex-column-center;
 }
 
 .underline {
@@ -23,17 +23,17 @@
   border-bottom: 1px dotted black;
   margin: 10px 0 0 0;
   h2 {
-    color: #4e5166;
+    color: $tertiary-color;
     font-weight: bold;
     font-size: 2rem;
   }
   h3 {
-    color: #fd2d01;
+    color: $primary-color;
     font-weight: 600;
     font-size: 1.2rem;
   }
   p {
-    color: #4e5166;
+    color: $tertiary-color;
     font-weight: 500;
     font-size: 1.1rem;
     span {
@@ -51,9 +51,7 @@ img {
 
 .containerDescription {
   height: 8.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  @include column-space-between;
 }
 
 .description {
@@ -74,17 +72,14 @@ img {
 
 .buttons {
   margin-bottom: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex-row-between;
 }
 
 .actionButtons {
   width: 13rem;
-  display: flex;
-  justify-content: space-between;
+  @include flex-row-between;
   button {
-    background-color: #4e5166;
+    background-color: $tertiary-color;
     color: white;
   }
 }

@@ -1,3 +1,17 @@
 $primary-color: #fd2d01;
 $secondary-color: #ffd7d7;
 $tertiary-color: #4e5166;
+
+$background-light-blue: rgba(130, 141, 213, 1);
+
+$background-connexion: linear-gradient(
+  8deg,
+  rgba(255, 215, 215, 0.6458333333333333) 0%,
+  rgba(255, 215, 215, 0.8912037037037037) 50%,
+  rgba(255, 215, 215, 1) 100%
+);
+$background-h-f: radial-gradient(
+  circle,
+  rgba(253, 45, 1, 0.8422273781902552) 54%,
+  rgba(255, 215, 215, 0.8306264501160092) 91%
+);

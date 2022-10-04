@@ -1,23 +1,20 @@
+@import "~../../../../../../../Scss/_variables";
+@import "~../../../../../../../Scss/mixins";
+
 .signupForm {
-  margin-right: auto;
-  margin-left: auto;
+  @include center-item;
   padding-bottom: 30px;
   position: relative;
   width: 70%;
-  background: linear-gradient(
-    8deg,
-    rgba(255, 215, 215, 0.6458333333333333) 0%,
-    rgba(255, 215, 215, 0.8912037037037037) 50%,
-    rgba(255, 215, 215, 1) 100%
-  );
+  background: $background-connexion;
   .mat-card-title {
     text-align: center;
     margin: 0.5rem 0 0.5rem 0;
-    color: #4e5166;
+    color: $tertiary-color;
     font-weight: bold;
   }
   .mat-card-subtitle {
-    color: #4e5166;
+    color: $tertiary-color;
     font-weight: 450;
   }
 }
@@ -31,9 +28,7 @@ mat-form-field {
 }
 
 .form-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex-row-between;
 }
 
 .form-card {
@@ -46,7 +41,7 @@ mat-card-actions {
   height: 3rem;
   button {
     color: white;
-    background: rgba(130, 141, 213, 1);
+    background: $background-light-blue;
     width: 50%;
     height: 100%;
   }
@@ -54,19 +49,18 @@ mat-card-actions {
 
 .option {
   width: auto;
-  margin-left: auto;
-  margin-right: auto;
+  @include center-item;
   text-align: center;
   font-size: 1.3rem;
   font-weight: bold;
   p {
-    color: #4e5166;
+    color: $tertiary-color;
   }
 
   a {
     text-decoration: underline;
     font-weight: bold;
-    color: rgba(130, 141, 213, 1);
+    color: $background-light-blue;
   }
 }
 

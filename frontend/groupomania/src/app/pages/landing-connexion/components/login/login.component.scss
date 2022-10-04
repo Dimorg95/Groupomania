@@ -1,26 +1,17 @@
 @import "~../../../../../../../Scss/_variables";
 @import "~../../../../../../../Scss/_mixins";
 .mainContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  @include center-item;
+  @include column-space-evenly;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   width: 50%;
   height: 80%;
-  @include center-item;
-  background: linear-gradient(
-    8deg,
-    rgba(255, 215, 215, 0.6458333333333333) 0%,
-    rgba(255, 215, 215, 0.8912037037037037) 50%,
-    rgba(255, 215, 215, 1) 100%
-  );
+  background: $background-connexion;
 }
 
 .mainLoginForm {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  @include column-space-evenly;
   width: 70%;
   height: 60%;
   @include center-item;
@@ -39,7 +30,7 @@
 
   button {
     color: white;
-    background: #4e5166;
+    background: $tertiary-color;
     width: 50%;
     height: 100%;
     cursor: pointer;
@@ -64,7 +55,7 @@
   a {
     text-decoration: underline;
     font-weight: bold;
-    color: rgba(130, 141, 213, 1);
+    color: $background-light-blue;
   }
 }
 

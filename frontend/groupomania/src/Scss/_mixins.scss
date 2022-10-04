@@ -2,3 +2,33 @@
   margin-right: auto;
   margin-left: auto;
 }
+//flex column
+@mixin column-space-evenly {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+@mixin column-space-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+//Flex row
+@mixin footer-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-row-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

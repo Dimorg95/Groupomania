@@ -1,9 +1,7 @@
+@import "../../../Scss/variables";
+
 header {
-  background: radial-gradient(
-    circle,
-    rgba(253, 45, 1, 0.8422273781902552) 54%,
-    rgba(255, 215, 215, 0.8306264501160092) 91%
-  );
+  background: $background-h-f;
   margin-bottom: 5rem;
   padding: 10px 0 10px 0;
   height: 10rem;

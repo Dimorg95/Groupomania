@@ -1,25 +1,18 @@
+@import "../../../Scss/mixins";
+@import "../../../Scss/variables";
+
 .primaryContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  @include column-space-evenly;
   margin-top: 12.5rem;
   width: 50%;
   height: 50%;
-  margin-left: auto;
-  margin-right: auto;
+  @include center-item;
   // background-color: #ffd7d7;
-  background: linear-gradient(
-    8deg,
-    rgba(255, 215, 215, 0.6458333333333333) 0%,
-    rgba(255, 215, 215, 0.8912037037037037) 50%,
-    rgba(255, 215, 215, 1) 100%
-  );
+  background: $background-connexion;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  @include column-space-evenly;
   height: 70%;
   background: linear-gradient(
     8deg,
@@ -40,10 +33,9 @@ img {
 .signup {
   height: 25%;
   text-align: center;
-  display: flex;
-  flex-direction: column;
+  @include column-space-evenly;
   align-items: center;
-  justify-content: space-evenly;
+
   background: #fcf4f4;
 }
 
@@ -57,7 +49,7 @@ button {
   flex-shrink: 0;
   padding: 0 10px 0 10px;
   color: white;
-  background: rgba(130, 141, 213, 1);
+  background: $background-light-blue;
 }
 
 //Media querys a prevoir pour réajuster la taille du composant
