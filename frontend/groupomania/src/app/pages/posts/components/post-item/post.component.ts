@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Post } from '../../models/post.model';
+import { User } from '../../models/user.model';
 import { PostService } from '../../services/post.service';
+import { userService } from '../../services/user.service';
 
 @Component({
   selector: 'app-post',
@@ -10,9 +12,13 @@ import { PostService } from '../../services/post.service';
 })
 export class PostComponent implements OnInit {
   @Input() post!: Post;
-  user!: any; //
+  user!: User; //
 
-  constructor(private postService: PostService, private router: Router) {}
+  constructor(
+    private postService: PostService,
+    private router: Router,
+    private userService: userService
+  ) {}
 
   ngOnInit(): void {
     //Pour chaque post faire une requete user grace au userId du post
@@ -20,7 +26,8 @@ export class PostComponent implements OnInit {
     //   this.user = result
     // })
     //faire le model user
+    this.userService.getOneUser(this.post.userId).subscribe((result) => {
+      this.user = result;
+    });
   }
 }
-
-//Pourquoi pas rajouter l'email et le name (coté backend) pour s'en servir directement dans le post

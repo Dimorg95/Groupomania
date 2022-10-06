@@ -1,12 +1,14 @@
-<div class="post-card">
+<div class="post-card" *ngIf="user">
   <div class="createInfo">
     <div class="underline">
       <h2>{{ post.title | titlecase }}</h2>
     </div>
-    <div class="underline"><h3>Email du créateur</h3></div>
+    <div class="underline">
+      <h3>{{ user.email }}</h3>
+    </div>
     <div class="underline">
       <p>
-        Mise en ligne par <span>Machin</span>
+        Mise en ligne par <span>{{ user.name }}</span>
         {{ post.createdDate | date: "le dd MMMM yyyy à HH:mm" }}
       </p>
     </div>

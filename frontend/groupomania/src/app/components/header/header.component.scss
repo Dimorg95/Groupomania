@@ -1,8 +1,8 @@
 @import "../../../Scss/variables";
-
+@import "../../../Scss/mixins";
 header {
   background: $background-h-f;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
   padding: 10px 0 10px 0;
   height: 10rem;
   width: auto;
@@ -23,11 +23,11 @@ header {
 .imageContainer {
   text-align: center;
 }
+
+.center-button {
+  @include center-flex;
+}
 button {
   width: 7rem;
   height: 2rem;
-  position: absolute;
-  top: 80%;
-  left: 45%;
-  transform: (-50%, -50%);
 }

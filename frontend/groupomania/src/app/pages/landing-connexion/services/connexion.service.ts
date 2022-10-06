@@ -56,6 +56,7 @@ export class loginSignupService {
           this.isAdmin = isAdmin;
           //enregistrer le token dans le local storage
           localStorage.setItem('token', this.authToken);
+
           this.isAuth$.next(true);
 
           this.router.navigateByUrl('/posts');
