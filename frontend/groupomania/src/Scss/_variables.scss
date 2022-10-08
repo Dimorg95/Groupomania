@@ -15,3 +15,11 @@ $background-h-f: radial-gradient(
   rgba(253, 45, 1, 0.8422273781902552) 54%,
   rgba(255, 215, 215, 0.8306264501160092) 91%
 );
+
+$breakpoint: (
+  tablet: 768px,
+  laptop: 1024px,
+  desktop: 1400px,
+  large: 1900px,
+  mobile: 479px,
+);

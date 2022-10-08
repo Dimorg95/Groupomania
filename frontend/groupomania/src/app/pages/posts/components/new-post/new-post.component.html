@@ -1,0 +1,56 @@
+<!-- <div class="mainContainer"> -->
+<mat-card class="newPostForm" [formGroup]="postForm">
+  <mat-card-title>Création du nouveau poste</mat-card-title>
+  <mat-card class="form-card">
+    <mat-card-subtitle>Titre de votre poste</mat-card-subtitle>
+    <mat-form-field appearance="fill">
+      <mat-label>Titre de votre nouveau post</mat-label>
+      <input type="text" matInput formControlName="title" class="input-width" />
+      <mat-error>Ce champ est requis</mat-error>
+    </mat-form-field>
+  </mat-card>
+  <mat-card class="form-card">
+    <mat-card-subtitle>Description </mat-card-subtitle>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        rows="1"
+        formControlName="text"
+        class="input-width"
+      ></textarea>
+      <mat-error>Ce champ est requis</mat-error>
+    </mat-form-field>
+  </mat-card>
+  <mat-card class="form-card image-card">
+    <input
+      type="file"
+      accept="image/*"
+      #imageInput
+      (change)="onFileAdded($event)"
+      formControlName="imageUrl"
+    />
+    <button
+      mat-raised-button
+      (click)="imageInput.click()"
+      class="add-image"
+      aria-label="Ajoutez une image"
+    >
+      Ajout d'une image
+    </button>
+    <img [src]="imagePreview" *ngIf="imagePreview" class="image-upload" />
+  </mat-card>
+  <mat-card-actions>
+    <button
+      mat-raised-button
+      color="warn"
+      aria-label="Publier"
+      (click)="onSubmitForm()"
+      [disabled]="postForm.invalid"
+    >
+      Envoyer
+    </button>
+  </mat-card-actions>
+  <mat-spinner *ngIf="loading"></mat-spinner>
+</mat-card>
+<!-- </div> -->

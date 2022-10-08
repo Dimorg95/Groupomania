@@ -1,5 +1,6 @@
 @import "../../../../../Scss/mixins";
 @import "../../../../../Scss/variables";
+@import "../../../../../Scss/placeholder";
 
 .post-card {
   box-sizing: border-box;
@@ -14,7 +15,7 @@
 }
 
 .createInfo {
-  @include flex-column-center;
+  @extend %flex-column-center;
 }
 
 .underline {
@@ -51,7 +52,7 @@ img {
 
 .containerDescription {
   height: 8.5rem;
-  @include column-space-between;
+  @extend %column-space-between;
 }
 
 .description {
@@ -72,12 +73,12 @@ img {
 
 .buttons {
   margin-bottom: 1.5rem;
-  @include flex-row-between;
+  @extend %flex-row-between;
 }
 
 .actionButtons {
   width: 13rem;
-  @include flex-row-between;
+  @extend %flex-row-between;
   button {
     background-color: $tertiary-color;
     color: white;

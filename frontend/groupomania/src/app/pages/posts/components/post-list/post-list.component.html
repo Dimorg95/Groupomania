@@ -1,3 +1,5 @@
-<div class="newPostButton"><button>Nouveau post</button></div>
+<div class="newPostButton">
+  <button (click)="onClickNewPost()">Nouveau post</button>
+</div>
 
 <app-post *ngFor="let post of posts$ | async" [post]="post"></app-post>

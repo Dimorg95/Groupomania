@@ -1,8 +1,9 @@
 @import "~../../../../../../../Scss/_variables";
 @import "~../../../../../../../Scss/_mixins";
+@import "../../../../../Scss/placeholder";
 .mainContainer {
-  @include center-item;
-  @include column-space-evenly;
+  @extend %center-item;
+  @extend %column-space-evenly;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   width: 50%;
@@ -11,10 +12,10 @@
 }
 
 .mainLoginForm {
-  @include column-space-evenly;
+  @extend %column-space-evenly;
   width: 70%;
   height: 60%;
-  @include center-item;
+  @extend %center-item;
   .mat-card-title {
     text-align: center;
     margin: 0.5rem 0 0.5rem 0;
@@ -44,7 +45,7 @@
 
 .option {
   width: auto;
-  @include center-item;
+  @extend %center-item;
   text-align: center;
   font-size: 1.3rem;
   font-weight: bold;
@@ -60,7 +61,7 @@
 }
 
 .mat-spinner {
-  @include center-item;
+  @extend %center-item;
 }
 
 @keyframes scale-button {

@@ -1,5 +1,6 @@
 @import "../../../Scss/variables";
 @import "../../../Scss/mixins";
+@import "../../../Scss/placeholder";
 
 footer {
   margin-top: 5rem;
@@ -20,12 +21,12 @@ li {
   text-align: center;
   color: white;
   list-style-type: none;
-  @include footer-flex;
+  @extend %footer-flex;
 }
 
 a {
   width: auto;
-  @include footer-flex;
+  @extend %footer-flex;
   //   color: #4e5166;
   color: $tertiary-color;
 }

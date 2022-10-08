@@ -10,6 +10,7 @@ exports.createPost = (req, res, next) => {
   let regex = new RegExp(/\S[\w\s]+$/gm);
   console.log(postObject.title);
   console.log(postObject.text);
+  console.log(postObject);
   // if (regex.test(postObject.text) && regex.test(postObject.title)) {
   delete postObject._id;
   delete postObject.userId;

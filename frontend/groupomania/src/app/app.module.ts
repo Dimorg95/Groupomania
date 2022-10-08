@@ -18,6 +18,7 @@ import { loginSignupService } from './pages/landing-connexion/services/connexion
 import { httpInterceptorProviders } from './interceptors';
 import { PostListComponent } from './pages/posts/components/post-list/post-list.component';
 import { PostComponent } from './pages/posts/components/post-item/post.component';
+import { NewPostComponent } from './pages/posts/components/new-post/new-post.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PostComponent } from './pages/posts/components/post-item/post.component
     LoginComponent,
     PostListComponent,
     PostComponent,
+    NewPostComponent,
   ],
   imports: [
     BrowserModule,

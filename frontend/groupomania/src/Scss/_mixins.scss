@@ -1,39 +1,29 @@
-@mixin center-item {
-  margin-right: auto;
-  margin-left: auto;
-}
-//flex column
-@mixin column-space-evenly {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
+//Media Queries
 
-@mixin column-space-between {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+@import "../Scss/variables";
 
-@mixin flex-column-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+@mixin large {
+  @media screen and (min-width: map-get($breakpoint, large)) {
+    @content;
+  }
 }
-
-//Flex row
-@mixin footer-flex {
-  display: flex;
-  flex-direction: column;
+@mixin desktop {
+  @media screen and (min-width: map-get($breakpoint, desktop)) {
+    @content;
+  }
 }
-
-@mixin flex-row-between {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+@mixin laptop {
+  @media screen and (min-width: map-get($breakpoint, laptop)) {
+    @content;
+  }
 }
-
-@mixin center-flex {
-  display: flex;
-  justify-content: center;
+@mixin tablet {
+  @media screen and (max-width: map-get($breakpoint, tablet)) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media screen and (max-width: map-get($breakpoint, mobile)) {
+    @content;
+  }
 }

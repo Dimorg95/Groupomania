@@ -1,8 +1,9 @@
 @import "~../../../../../../../Scss/_variables";
 @import "~../../../../../../../Scss/mixins";
+@import "../../../../../Scss/placeholder";
 
 .signupForm {
-  @include center-item;
+  @extend %center-item;
   padding-bottom: 30px;
   position: relative;
   width: 70%;
@@ -28,7 +29,7 @@ mat-form-field {
 }
 
 .form-row {
-  @include flex-row-between;
+  @extend %flex-row-between;
 }
 
 .form-card {
@@ -49,7 +50,7 @@ mat-card-actions {
 
 .option {
   width: auto;
-  @include center-item;
+  @extend %center-item;
   text-align: center;
   font-size: 1.3rem;
   font-weight: bold;

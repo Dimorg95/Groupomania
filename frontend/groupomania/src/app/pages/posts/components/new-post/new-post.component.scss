@@ -1,0 +1,61 @@
+@import "../../../../../Scss/mixins";
+@import "../../../../../Scss/variables";
+@import "../../../../../Scss/placeholder";
+
+// .mainContainer {
+//   @include center-item;
+//   width: 50rem;
+//   height: 100%;
+//   background: rgb(187, 160, 109);
+// }
+
+.newPostForm {
+  @extend %center-item;
+  width: 50rem;
+  height: 40rem;
+  @extend %column-space-evenly;
+  align-items: center;
+  background: $background-connexion;
+}
+.form-card {
+  width: 40rem;
+  text-align: center;
+}
+
+.mat-form-field {
+  width: 25rem;
+}
+
+.image-card {
+  @extend %column-space-between;
+  align-items: center;
+}
+
+mat-card-title {
+  color: $tertiary-color;
+  font-weight: 800;
+  font-size: 1.7rem;
+}
+
+mat-card-subtitle {
+  font-weight: 700;
+  color: $tertiary-color;
+  font-size: 1.2rem;
+}
+mat-error {
+  color: red;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.add-image {
+  background-color: $tertiary-color;
+  color: white;
+}
+.image-upload {
+  max-height: 10rem;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

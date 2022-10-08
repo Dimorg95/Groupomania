@@ -1,7 +1,8 @@
 @import "../../../../../Scss/mixins";
+@import "../../../../../Scss/placeholder";
 
 .newPostButton {
-  @include center-flex;
+  @extend %center-flex;
   button {
     width: 7rem;
     height: 2rem;
