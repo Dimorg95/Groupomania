@@ -3,17 +3,17 @@
 @import "../Scss/variables";
 
 @mixin large {
-  @media screen and (min-width: map-get($breakpoint, large)) {
+  @media screen and (max-width: map-get($breakpoint, large)) {
     @content;
   }
 }
 @mixin desktop {
-  @media screen and (min-width: map-get($breakpoint, desktop)) {
+  @media screen and (max-width: map-get($breakpoint, desktop)) {
     @content;
   }
 }
 @mixin laptop {
-  @media screen and (min-width: map-get($breakpoint, laptop)) {
+  @media screen and (max-width: map-get($breakpoint, laptop)) {
     @content;
   }
 }

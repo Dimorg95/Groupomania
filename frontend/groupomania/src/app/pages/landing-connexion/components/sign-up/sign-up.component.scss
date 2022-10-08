@@ -8,6 +8,7 @@
   position: relative;
   width: 70%;
   background: $background-connexion;
+  height: 45rem;
   .mat-card-title {
     text-align: center;
     margin: 0.5rem 0 0.5rem 0;
@@ -26,15 +27,25 @@ mat-form-field {
     width: 80%;
     margin-left: 10%;
   }
+  @include mobile {
+    width: 100%;
+  }
 }
 
 .form-row {
   @extend %flex-row-between;
+  @include mobile {
+    flex-direction: column;
+  }
 }
 
 .form-card {
   margin: 20px 0;
   text-align: center;
+  height: 8rem;
+  @include mobile {
+    height: 10rem;
+  }
 }
 
 mat-card-actions {
