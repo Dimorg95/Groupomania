@@ -8,7 +8,7 @@
   border-radius: 25px;
   width: 70%;
   // height: 80%;
-  height: 40rem;
+  height: 50rem;
   margin: 50px auto;
   background: $background-connexion;
   padding: 5px;
@@ -58,6 +58,9 @@ img {
 .description {
   font-size: 1.4rem;
   text-align: center;
+  @include mobile {
+    font-size: 1rem;
+  }
 }
 .likes {
   display: flex;
@@ -74,11 +77,18 @@ img {
 .buttons {
   margin-bottom: 1.5rem;
   @extend %flex-row-between;
+  @include mobile {
+    flex-direction: column;
+    margin-top: 1.5rem;
+  }
 }
 
 .actionButtons {
   width: 13rem;
   @extend %flex-row-between;
+  @include mobile {
+    margin-top: 1.5rem;
+  }
   button {
     background-color: $tertiary-color;
     color: white;

@@ -8,16 +8,21 @@
   position: relative;
   width: 70%;
   background: $background-connexion;
-  height: 45rem;
+  height: 48rem;
+  @include mobile {
+    height: 60rem;
+  }
   .mat-card-title {
     text-align: center;
     margin: 0.5rem 0 0.5rem 0;
     color: $tertiary-color;
     font-weight: bold;
+    font-size: 1.8rem;
   }
   .mat-card-subtitle {
     color: $tertiary-color;
     font-weight: 450;
+    font-size: 1.5rem;
   }
 }
 
@@ -35,7 +40,9 @@ mat-form-field {
 .form-row {
   @extend %flex-row-between;
   @include mobile {
+    display: flex;
     flex-direction: column;
+    height: 10rem;
   }
 }
 
@@ -44,7 +51,15 @@ mat-form-field {
   text-align: center;
   height: 8rem;
   @include mobile {
-    height: 10rem;
+    height: 13rem;
+  }
+}
+
+.center-mobile {
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
   }
 }
 
@@ -56,6 +71,10 @@ mat-card-actions {
     background: $background-light-blue;
     width: 50%;
     height: 100%;
+    font-size: 1.5rem;
+    @include mobile {
+      font-size: 1.2rem;
+    }
   }
 }
 
@@ -63,8 +82,11 @@ mat-card-actions {
   width: auto;
   @extend %center-item;
   text-align: center;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: bold;
+  @include mobile {
+    font-size: 1.2rem;
+  }
   p {
     color: $tertiary-color;
   }
