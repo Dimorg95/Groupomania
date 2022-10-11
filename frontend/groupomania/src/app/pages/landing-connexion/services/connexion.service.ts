@@ -58,7 +58,7 @@ export class loginSignupService {
           localStorage.setItem('token', this.authToken);
 
           this.isAuth$.next(true);
-
+          console.log(this.isAuth$);
           this.router.navigateByUrl('/posts');
         })
       );

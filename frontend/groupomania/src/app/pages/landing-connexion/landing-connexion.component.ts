@@ -15,6 +15,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, share, shareReplay } from 'rxjs';
+import { PostService } from '../posts/services/post.service';
 import { loginSignupService } from './services/connexion.service';
 
 @Component({
@@ -52,20 +53,18 @@ export class LandingConnexionComponent implements OnInit {
   constructor(
     private router: Router,
     private renderer: Renderer2,
-    private connect: loginSignupService
+    private connect: loginSignupService,
+    private postService: PostService
   ) {}
 
   btnAnimationState: 'default' | 'active' = 'default';
 
   ngOnInit(): void {
     //a revoir ne fonctionne pas correctement isAuth semble etre false alors qu'on est connecter
-    //Je ne vois pas d'ou vient le probleme a la connection il passe bien en true mais la valeur ce reset
     if (this.connect.getIsAuth() === true) {
-      console.log('On tombe dans le if');
-      this.router.navigateByUrl('/posts');
-    } else {
-      console.log('on tombe dans le Else');
+      this.router.navigate(['/posts']);
     }
+    //Je ne vois pas d'ou vient le probleme a la connection il passe bien en true mais la valeur ce reset
   }
 
   ////////////////////////////

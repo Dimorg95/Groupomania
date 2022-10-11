@@ -28,7 +28,6 @@
       accept="image/*"
       #imageInput
       (change)="onFileAdded($event)"
-      formControlName="imageUrl"
     />
     <button
       mat-raised-button
@@ -42,6 +41,7 @@
   </mat-card>
   <mat-card-actions>
     <button
+      class="submit-button"
       mat-raised-button
       color="warn"
       aria-label="Publier"

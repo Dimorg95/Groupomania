@@ -11,19 +11,19 @@
 
 .newPostForm {
   @extend %center-item;
-  width: 50rem;
+  width: 90%;
   height: 40rem;
   @extend %column-space-evenly;
   align-items: center;
   background: $background-connexion;
 }
 .form-card {
-  width: 40rem;
+  width: 80%;
   text-align: center;
 }
 
 .mat-form-field {
-  width: 25rem;
+  width: 70%;
 }
 
 .image-card {
@@ -34,13 +34,26 @@
 mat-card-title {
   color: $tertiary-color;
   font-weight: 800;
-  font-size: 1.7rem;
+  font-size: 2rem;
+  @include tablet {
+    font-size: 1.8rem;
+  }
+  @include mobile {
+    font-size: 1.3rem;
+    text-align: center;
+  }
 }
 
 mat-card-subtitle {
   font-weight: 700;
   color: $tertiary-color;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
+  @include tablet {
+    font-size: 1.5rem;
+  }
+  @include mobile {
+    font-size: 1.2rem;
+  }
 }
 mat-error {
   color: red;
@@ -50,12 +63,24 @@ input[type="file"] {
   display: none;
 }
 
-.add-image {
+.add-image,
+.submit-button {
   background-color: $tertiary-color;
   color: white;
+  font-size: 1.8rem;
+  @include tablet {
+    font-size: 1.5rem;
+  }
+  @include mobile {
+    font-size: 1.2rem;
+  }
 }
 .image-upload {
   max-height: 10rem;
   margin-top: 5px;
   margin-bottom: 5px;
 }
+
+// .submit-button {
+//   font-size: 1.8rem;
+// }

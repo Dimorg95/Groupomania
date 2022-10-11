@@ -37,7 +37,7 @@ export class NewPostComponent implements OnInit {
     this.postForm = this.formBuilder.group({
       title: [null, Validators.required],
       text: [null, Validators.required],
-      imageUrl: [null, Validators.required],
+      image: [null, Validators.required],
     });
     this.imagePreview = '';
   }
@@ -52,7 +52,7 @@ export class NewPostComponent implements OnInit {
     newPost.userId = this.connect.getUserId();
     console.log(newPost.userId);
     this.postService
-      .addNewPost(newPost, this.postForm.get('imageUrl')!.value)
+      .addNewPost(newPost, this.postForm.get('image')!.value)
       .pipe(
         tap(({ message }) => {
           console.log(message);

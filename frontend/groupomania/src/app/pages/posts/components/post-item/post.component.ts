@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { loginSignupService } from 'src/app/pages/landing-connexion/services/connexion.service';
 import { Post } from '../../models/post.model';
 import { User } from '../../models/user.model';
 import { PostService } from '../../services/post.service';
@@ -17,7 +18,8 @@ export class PostComponent implements OnInit {
   constructor(
     private postService: PostService,
     private router: Router,
-    private userService: userService
+    private userService: userService,
+    private connect: loginSignupService
   ) {}
 
   ngOnInit(): void {
@@ -25,6 +27,8 @@ export class PostComponent implements OnInit {
     //this.userService.getOneUser().subscribe((result) => {
     //   this.user = result
     // })
+    console.log(this.connect.getIsAuth());
+
     //faire le model user
     this.userService.getOneUser(this.post.userId).subscribe((result) => {
       this.user = result;

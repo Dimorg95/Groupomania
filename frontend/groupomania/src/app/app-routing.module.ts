@@ -9,11 +9,17 @@ import { PostListComponent } from './pages/posts/components/post-list/post-list.
 import { AuthGuard } from './pages/posts/services/auth-guard.service';
 
 const routes: Routes = [
-  { path: '', component: LandingConnexionComponent },
+  {
+    path: 'home',
+    component: LandingConnexionComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'signup', component: SignUpComponent },
   { path: 'login', component: LoginComponent },
   { path: 'posts', component: PostListComponent, canActivate: [AuthGuard] },
   { path: 'new-post', component: NewPostComponent, canActivate: [AuthGuard] },
+
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({
