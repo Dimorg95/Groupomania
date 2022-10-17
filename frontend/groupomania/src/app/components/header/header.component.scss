@@ -40,6 +40,7 @@ header {
   @extend %center-flex;
 }
 button {
-  width: 7rem;
-  height: 2rem;
+  background-color: $tertiary-color;
+  color: white;
+  font-size: 0.8rem;
 }

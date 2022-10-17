@@ -3,11 +3,18 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { UserModelId } from '../../posts/models/userId.model';
 @Injectable({
   providedIn: 'root',
 })
 export class loginSignupService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+    //test
+    const token = localStorage.getItem('token');
+    this.isAuth$.next(!!token);
+  }
+  //test
+  user!: UserModelId;
 
   private authToken = '';
   private userId = '';
@@ -18,6 +25,8 @@ export class loginSignupService {
     return this.isAuth$.value;
   }
 
+  //test
+
   getUserId() {
     return this.userId;
   }
@@ -25,8 +34,13 @@ export class loginSignupService {
   getToken() {
     return this.authToken;
   }
-  getUserAdmin() {
+  get UserAdmin() {
     return this.isAdmin;
+  }
+
+  //test
+  getUserIdFromToken(token: string): UserModelId {
+    return JSON.parse(atob(token.split('.')[1]));
   }
 
   userSignUp(name: string, email: string, password: string, isAdmin: boolean) {
@@ -58,6 +72,9 @@ export class loginSignupService {
           localStorage.setItem('token', this.authToken);
 
           this.isAuth$.next(true);
+          //test
+          this.user = this.getUserIdFromToken(token);
+          console.log(this.user);
           console.log(this.isAuth$);
           this.router.navigateByUrl('/posts');
         })

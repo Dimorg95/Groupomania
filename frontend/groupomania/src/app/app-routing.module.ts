@@ -18,7 +18,12 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'posts', component: PostListComponent, canActivate: [AuthGuard] },
   { path: 'new-post', component: NewPostComponent, canActivate: [AuthGuard] },
-
+  //test
+  {
+    path: 'modify-post/:id',
+    component: NewPostComponent,
+    canActivate: [AuthGuard],
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

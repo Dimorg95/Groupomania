@@ -19,6 +19,7 @@ import { httpInterceptorProviders } from './interceptors';
 import { PostListComponent } from './pages/posts/components/post-list/post-list.component';
 import { PostComponent } from './pages/posts/components/post-item/post.component';
 import { NewPostComponent } from './pages/posts/components/new-post/new-post.component';
+import { PostService } from './pages/posts/services/post.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { NewPostComponent } from './pages/posts/components/new-post/new-post.com
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [loginSignupService, httpInterceptorProviders],
+  providers: [loginSignupService, PostService, httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

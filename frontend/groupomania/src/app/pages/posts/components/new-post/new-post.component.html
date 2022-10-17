@@ -1,6 +1,6 @@
 <!-- <div class="mainContainer"> -->
-<mat-card class="newPostForm" [formGroup]="postForm">
-  <mat-card-title>Création du nouveau poste</mat-card-title>
+<mat-card class="newPostForm" *ngIf="postForm" [formGroup]="postForm">
+  <mat-card-title>Création/Modification de poste</mat-card-title>
   <mat-card class="form-card">
     <mat-card-subtitle>Titre de votre poste</mat-card-subtitle>
     <mat-form-field appearance="fill">

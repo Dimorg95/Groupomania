@@ -36,90 +36,90 @@ exports.createPost = (req, res, next) => {
   // }
 };
 
-exports.modifyPost = (req, res, next) => {
-  //Rajouter une validation via la meme regex de création de post
-  console.log('demarrage');
-  //Si changement d'image
-  if (req.file) {
-    console.log('dans le If');
-    Post.findOne({ _id: req.params.id })
-      .then((post) => {
-        const filename = post.imageUrl.split('/images/')[1];
-        const newImageUrl = `${req.protocol}://${req.get('host')}/images/${
-          req.file.filename
-        }`;
-        fs.unlink(`images/${filename}`, () => {
-          const postObject = JSON.parse(req.body.post);
-          const newDescription = postObject.text;
-          const newTitle = postObject.title;
-          if (req.auth.userId === postObject.userId) {
-            Post.updateOne(
-              { _id: req.params.id },
-              {
-                text: newDescription,
-                title: newTitle,
-                imageUrl: newImageUrl,
-                createdDate: new Date(Date.now()),
-              }
-            )
-              .then(() =>
-                res.status(200).json({ message: 'Image et poste mis a jour' })
-              )
-              .catch((error) => res.status(400).json({ error }));
-          }
-        });
-      })
-      .catch((error) => res.status(500).json(error));
-    //Si aucun changement d'image juste du text
-  } else {
-    console.log('on tombe dans le ELSE');
-    const postObject = req.body;
-    const newDescription = postObject.text;
-    const newTitle = postObject.title;
-    if (req.auth.userId === postObject.userId) {
-      Post.updateOne(
-        { _id: req.params.id },
-        {
-          text: newDescription,
-          title: newTitle,
-          createdDate: new Date(Date.now()),
-        }
-      )
-        .then(() => res.status(200).json({ message: 'Texte mis a jour' }))
-        .catch((error) => res.status(400).json({ error }));
-    }
-  }
-};
-
 // exports.modifyPost = (req, res, next) => {
-//   console.log('alllloooo');
-//   const postObject = req.file
-//     ? {
-//         ...JSON.parse(req.body.post),
-//         imageUrl: `${req.protocol}://${req.get('host')}/images/${
+//   //Rajouter une validation via la meme regex de création de post
+//   console.log('demarrage');
+//   //Si changement d'image
+//   if (req.file) {
+//     console.log('dans le If');
+//     Post.findOne({ _id: req.params.id })
+//       .then((post) => {
+//         const filename = post.imageUrl.split('/images/')[1];
+//         const newImageUrl = `${req.protocol}://${req.get('host')}/images/${
 //           req.file.filename
-//         }`,
-//       }
-//     : { ...req.body };
-//   delete postObject._id;
-
-//   Post.findOne({ _id: req.params.id })
-//     .then((post) => {
-//       if (post.userId != req.auth.userId) {
-//         res.status(401).json({ message: 'Non Autorisé' });
-//       } else {
-//         Post.updateOne(
-//           { _id: req.params.id },
-//           { ...postObject, _id: req.params.id }
-//         )
-//           .then(() => res.status(200).json({ message: 'Objet modifier' }))
-//           .catch((error) => res.status(401).json({ error }));
-//       }
-//     })
-//     .catch((error) => {
-//       res.status(400).json({ error });
-//     });
+//         }`;
+//         fs.unlink(`images/${filename}`, () => {
+//           const postObject = JSON.parse(req.body.post);
+//           const newDescription = postObject.text;
+//           const newTitle = postObject.title;
+//           if (req.auth.userId === postObject.userId) {
+//             Post.updateOne(
+//               { _id: req.params.id },
+//               {
+//                 text: newDescription,
+//                 title: newTitle,
+//                 imageUrl: newImageUrl,
+//                 createdDate: new Date(Date.now()),
+//               }
+//             )
+//               .then(() =>
+//                 res.status(200).json({ message: 'Image et poste mis a jour' })
+//               )
+//               .catch((error) => res.status(400).json({ error }));
+//           }
+//         });
+//       })
+//       .catch((error) => res.status(500).json(error));
+//     //Si aucun changement d'image juste du text
+//   } else {
+//     console.log('on tombe dans le ELSE');
+//     const postObject = req.body;
+//     const newDescription = postObject.text;
+//     const newTitle = postObject.title;
+//     if (req.auth.userId === postObject.userId) {
+//       Post.updateOne(
+//         { _id: req.params.id },
+//         {
+//           text: newDescription,
+//           title: newTitle,
+//           createdDate: new Date(Date.now()),
+//         }
+//       )
+//         .then(() => res.status(200).json({ message: 'Texte mis a jour' }))
+//         .catch((error) => res.status(400).json({ error }));
+//     }
+//   }
 // };
+
+exports.modifyPost = (req, res, next) => {
+  console.log('alllloooo');
+  const postObject = req.file
+    ? {
+        ...JSON.parse(req.body.post),
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${
+          req.file.filename
+        }`,
+      }
+    : { ...req.body };
+  delete postObject._id;
+
+  Post.findOne({ _id: req.params.id })
+    .then((post) => {
+      if (post.userId != req.auth.userId) {
+        res.status(401).json({ message: 'Non Autorisé' });
+      } else {
+        Post.updateOne(
+          { _id: req.params.id },
+          { ...postObject, _id: req.params.id }
+        )
+          .then(() => res.status(200).json({ message: 'Objet modifier' }))
+          .catch((error) => res.status(401).json({ error }));
+      }
+    })
+    .catch((error) => {
+      res.status(400).json({ error });
+    });
+};
 
 //Recuperation et envoie de tout les post en BDD
 exports.getAllPost = (req, res, next) => {
@@ -132,18 +132,6 @@ exports.getOnePost = (req, res, next) => {
   Post.findOne({ _id: req.params.id })
     .then((post) => res.status(200).json(post))
     .catch((error) => res.status(400).json({ error }));
-};
-
-//Modification de post
-exports.modifyPost = (req, res, next) => {
-  const postObject = req.file
-    ? {
-        ...JSON.parse(req.body.post),
-        imageUrl: `${req.protocol}:://${req.get('host')}/images${
-          req.file.filename
-        }`,
-      }
-    : { ...req.body };
 };
 
 //Suppression d'un post + son image

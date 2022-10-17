@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { Post } from '../../models/post.model';
+import { DataService } from '../../services/data.service';
 import { PostService } from '../../services/post.service';
 
 @Component({
@@ -12,21 +13,25 @@ import { PostService } from '../../services/post.service';
 export class PostListComponent implements OnInit {
   //v1
   posts$!: Observable<Post[]>;
-  //test
-  // post$!: Observable<Post>;
-  // posts$ = new BehaviorSubject<Post[]>([]);
 
-  constructor(private postService: PostService, private router: Router) {}
+  //Recuperation depuis post component pour actualiser la page a la supression
+  notifierSubscription: Subscription =
+    this.dataService.eventEmitterNotifier.subscribe((notified) => {
+      this.posts$ = this.postService.getAllPost();
+    });
+  constructor(
+    private postService: PostService,
+    private router: Router,
+    private dataService: DataService
+  ) {}
 
   ngOnInit(): void {
     //V1
     this.posts$ = this.postService.getAllPost();
-
-    //test
-    // this.postService.posts$.subscribe((posts: Post[]) => {
-    //   this.posts$.next(posts);
-    //   console.log(posts);
-    // });
+  }
+  //On unsubscribe a la notification
+  ngOnDestroy() {
+    this.notifierSubscription.unsubscribe();
   }
 
   onClickNewPost() {

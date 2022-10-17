@@ -10,7 +10,7 @@
   // height: 80%;
   height: 75rem;
   margin: 50px auto;
-  background: $background-connexion;
+  background: $background-post;
   padding: 5px;
   @include laptop {
     height: 50rem;
@@ -74,13 +74,26 @@ img {
 .likes {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  margin-left: 1rem;
+  height: 2rem;
   i {
     font-size: 2rem;
+
+    cursor: pointer;
+    &:hover {
+      color: rgb(51, 219, 0, 1);
+    }
   }
 
   p {
-    margin-left: 0.5rem;
+    margin-left: 0.8rem;
+    font-size: 1.2rem;
   }
+}
+
+.liked {
+  color: rgb(51, 219, 0, 1);
 }
 
 .buttons {

@@ -20,14 +20,23 @@
     <div class="buttons">
       <!-- <button mat-icon-button><mat-icon>thumb_up</mat-icon></button> -->
       <div class="likes">
-        <i class="fas fa-heart"></i>
-        <p>{{ post.likes }}</p>
+        <!-- <i class="fas fa-heart"></i> -->
+        <i
+          [ngClass]="{ 'fas liked': liked, far: !liked }"
+          class="fa-solid fa-heart"
+          (click)="onLike()"
+        ></i>
+        <p>{{ likedMessage }}</p>
       </div>
 
       <!-- Mettre en place un autre icone pour les likes -->
       <div class="actionButtons">
-        <button mat-raised-button>Modifier</button>
-        <button mat-raised-button>Supprimer</button>
+        <button mat-raised-button *ngIf="disableButton" (click)="onModify()">
+          Modifier
+        </button>
+        <button mat-raised-button *ngIf="disableButton" (click)="onDelete()">
+          Supprimer
+        </button>
       </div>
     </div>
   </div>
