@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, EMPTY, empty, switchMap, tap } from 'rxjs';
 import { loginSignupService } from 'src/app/pages/landing-connexion/services/connexion.service';
 import { Post } from '../../models/post.model';
+import { UserModelId } from '../../models/userId.model';
 import { PostService } from '../../services/post.service';
 
 @Component({
@@ -23,6 +24,8 @@ export class NewPostComponent implements OnInit {
   imagePreview!: string;
   post!: Post;
   mode!: string;
+  token!: string;
+  infoFromToken!: UserModelId;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,6 +36,10 @@ export class NewPostComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.token = JSON.stringify(localStorage.getItem('token'));
+
+    this.infoFromToken = this.connect.getUserIdFromToken(this.token);
+
     this.route.params
       .pipe(
         switchMap((params) => {
@@ -81,7 +88,8 @@ export class NewPostComponent implements OnInit {
     newPost.title = this.postForm.get('title')!.value;
     newPost.text = this.postForm.get('text')!.value;
     //changer cette methode et recuperer le userId du token ?
-    newPost.userId = this.connect.getUserId();
+    // newPost.userId = this.connect.getUserId();
+    newPost.userId = this.infoFromToken.userId;
     console.log(newPost.userId);
     if (this.mode === 'new') {
       this.postService

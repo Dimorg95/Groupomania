@@ -86,6 +86,7 @@ export class PostComponent implements OnInit {
     } else {
       this.liked = false;
     }
+
     //Ajustage du texte par rapport au like
     if (this.post.likes === 1) {
       this.likedMessage = this.post.likes + ' utilisateur à aimé';

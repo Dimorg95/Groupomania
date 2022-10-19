@@ -105,7 +105,7 @@ exports.modifyPost = (req, res, next) => {
 
   Post.findOne({ _id: req.params.id })
     .then((post) => {
-      if (post.userId != req.auth.userId) {
+      if (post.userId != req.auth.userId && req.auth.isAdmin === false) {
         res.status(401).json({ message: 'Non Autorisé' });
       } else {
         Post.updateOne(
@@ -137,7 +137,7 @@ exports.getOnePost = (req, res, next) => {
 //Suppression d'un post + son image
 exports.deletePost = (req, res, next) => {
   Post.findOne({ _id: req.params.id }).then((post) => {
-    if (post.userId != req.auth.userId) {
+    if (post.userId != req.auth.userId && req.auth.isAdmin === false) {
       res.status(401).json({ message: 'Utilisateur non autorisé' });
     } else {
       const filename = post.imageUrl.split('/images/')[1];
