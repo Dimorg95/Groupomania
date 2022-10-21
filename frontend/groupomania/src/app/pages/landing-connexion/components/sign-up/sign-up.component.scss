@@ -8,7 +8,7 @@
   position: relative;
   width: 70%;
   background: $background-connexion;
-  height: 48rem;
+  height: 50rem;
   @include mobile {
     height: 60rem;
   }
@@ -101,4 +101,8 @@ mat-card-actions {
 .error-txt {
   color: red;
   margin-right: 10px;
+}
+
+.mat-spinner {
+  @extend %center-item;
 }

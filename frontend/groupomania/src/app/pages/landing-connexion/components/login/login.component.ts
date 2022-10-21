@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
 
     //Mise en place du formulaire
-
     this.loginForm = this.formBuilder.group({
       mail: [null, [Validators.required, Validators.email]],
       password: [
@@ -44,19 +43,16 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  //Bouton de connexion
   onSubmitLogin() {
     this.loading = true;
-
     this.email = this.loginForm.get('mail')?.value;
     this.password = this.loginForm.value.password;
     this.isAdmin = this.loginForm.value.isAdmin;
-    console.log(this.email);
-    console.log(this.password);
-    console.log(this.isAdmin);
     this.connect
       .userLogin(this.email, this.password, this.isAdmin)
       .pipe(
-        delay(1500),
+        delay(2000),
         tap(() => {
           this.loading = false;
         }),
@@ -69,5 +65,3 @@ export class LoginComponent implements OnInit {
       .subscribe();
   }
 }
-
-//Cela ne fonctionne pas !!! a revoir !!!

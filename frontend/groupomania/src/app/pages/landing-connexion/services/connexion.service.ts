@@ -9,11 +9,10 @@ import { UserModelId } from '../../posts/models/userId.model';
 })
 export class loginSignupService {
   constructor(private http: HttpClient, private router: Router) {
-    //test
     const token = localStorage.getItem('token');
     this.isAuth$.next(!!token);
   }
-  //test
+
   user!: UserModelId;
 
   private authToken = '';
@@ -25,25 +24,18 @@ export class loginSignupService {
     return this.isAuth$.value;
   }
 
-  //test
-
-  getUserId() {
-    return this.userId;
-  }
-
   getToken() {
     return this.authToken;
   }
-  get UserAdmin() {
-    return this.isAdmin;
-  }
+
   token = JSON.stringify(localStorage.getItem('token'));
 
-  //test
+  //Recuperation de l'id de l'utilisateur
   getUserIdFromToken(token: string): UserModelId {
     return JSON.parse(atob(token.split('.')[1]));
   }
 
+  //Enregistrement de l'utilisateur
   userSignUp(name: string, email: string, password: string, isAdmin: boolean) {
     console.log('Utilisateur enregistrer');
     return this.http.post<{ message: string }>(
@@ -52,6 +44,7 @@ export class loginSignupService {
     );
   }
 
+  //Connexion de l'utilisateur
   userLogin(email: string, password: string, isAdmin: boolean) {
     return this.http
       .post<{
@@ -71,18 +64,15 @@ export class loginSignupService {
           this.isAdmin = isAdmin;
           //enregistrer le token dans le local storage
           localStorage.setItem('token', this.authToken);
-
           this.isAuth$.next(true);
-          //test
+
           this.user = this.getUserIdFromToken(token);
-          console.log(this.user);
-          console.log(this.isAuth$);
           this.router.navigateByUrl('/posts');
         })
       );
   }
 
-  //deconnexion via bouton header
+  //Deconnexion via bouton header
   userLogout() {
     this.authToken = '';
     this.userId = '';
@@ -92,7 +82,7 @@ export class loginSignupService {
     console.log('utilisateur deconnecté');
   }
 
-  //test service reset token!!!
+  //Utilisés pour gerer le token expirer
   isTokenExpired(token: string) {
     const expiry = JSON.parse(atob(token.split('.')[1])).exp;
     return expiry * 1000 < Date.now();

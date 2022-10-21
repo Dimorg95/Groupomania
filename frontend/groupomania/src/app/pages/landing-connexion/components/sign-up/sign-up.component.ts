@@ -33,12 +33,14 @@ export class SignUpComponent implements OnInit {
   mainForm!: FormGroup;
 
   nameForm!: FormGroup;
-  nameCtrl!: FormControl; //peut etre pas utile
+  nameCtrl!: FormControl;
 
+  //Formulaire Email
   emailForm!: FormGroup;
   emailCtrl!: FormControl;
   emailConfirmCtrl!: FormControl;
 
+  //formulaire password
   passwordForm!: FormGroup;
   passwordCtrl!: FormControl;
   passwordConfirmCtrl!: FormControl;
@@ -85,10 +87,10 @@ export class SignUpComponent implements OnInit {
   }
   //On init les controls du formulaire
   private initFormControls(): void {
-    //Form name
+    //Formulaire name
     this.nameCtrl = this.formBuilder.control('', Validators.required);
 
-    //Form Email
+    //Formulaire Email
     this.emailCtrl = this.formBuilder.control('', [
       Validators.required,
       Validators.email,
@@ -111,7 +113,7 @@ export class SignUpComponent implements OnInit {
     this.passwordRegex =
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
 
-    //Form password
+    //Formulaire password
     this.passwordCtrl = this.formBuilder.control('', [
       Validators.required,
       Validators.pattern(this.passwordRegex),

@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, EMPTY, empty, switchMap, tap } from 'rxjs';
+import { catchError, delay, EMPTY, empty, switchMap, tap } from 'rxjs';
 import { loginSignupService } from 'src/app/pages/landing-connexion/services/connexion.service';
 import { Post } from '../../models/post.model';
 import { UserModelId } from '../../models/userId.model';
@@ -112,6 +112,7 @@ export class NewPostComponent implements OnInit {
       this.postService
         .addNewPost(newPost, this.postForm.get('image')!.value)
         .pipe(
+          delay(1500),
           tap(({ message }) => {
             console.log(message);
             this.loading = false;
