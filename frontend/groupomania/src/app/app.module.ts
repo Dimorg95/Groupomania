@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
-import { LandingConnexionComponent } from './pages/landing-connexion/landing-connexion.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
@@ -25,7 +24,7 @@ import { PostService } from './pages/posts/services/post.service';
   declarations: [
     AppComponent,
     HeaderComponent,
-    LandingConnexionComponent,
+
     FooterComponent,
     SignUpComponent,
     LoginComponent,

@@ -94,62 +94,65 @@ export class PostComponent implements OnInit {
       this.likedMessage = this.post.likes + ' utilisateur ont aimé';
     }
   }
-
+  //A chaque fonction on verifie que le token n'est pas expirer
+  //Fonction qui nous supprime l'article cliquer
   onDelete() {
-    this.postService
-      .deletePost(this.post._id)
-      .pipe(
-        tap((message) => {
-          console.log(message);
-          this.notifyForChange();
-        }),
+    if (this.connect.isTokenExpired(this.token)) {
+      this.redirecting();
+    } else {
+      this.postService
+        .deletePost(this.post._id)
+        .pipe(
+          tap((message) => {
+            console.log(message);
+            this.notifyForChange();
+          }),
 
-        catchError((error) => {
-          console.error(error);
-          return EMPTY;
-        })
-      )
-      .subscribe();
+          catchError((error) => {
+            console.error(error);
+            return EMPTY;
+          })
+        )
+        .subscribe();
+    }
   }
   onLike() {
-    this.postService
-      .likedPost(this.post._id, !this.liked)
-      .pipe(
-        tap((liked) => {
-          this.liked = liked;
-          this.notifyForChange();
-        }),
-        map((liked) => ({
-          ...this.post,
-          likes: liked ? this.post.likes + 1 : this.post.likes - 1,
-        }))
-      )
-      .subscribe();
+    if (this.connect.isTokenExpired(this.token)) {
+      this.redirecting();
+    } else {
+      this.postService
+        .likedPost(this.post._id, !this.liked)
+        .pipe(
+          tap((liked) => {
+            this.liked = liked;
+            this.notifyForChange();
+          }),
+          map((liked) => ({
+            ...this.post,
+            likes: liked ? this.post.likes + 1 : this.post.likes - 1,
+          }))
+        )
+        .subscribe();
+    }
   }
   //Notification de changement pour rechargement de la page post-list
   notifyForChange() {
     this.dataService.notifyAboutChange();
   }
-  //test recup un post
-  // onModify() {
-  //   this.postService
-  //     .getOnePost(this.post._id)
-  //     .pipe(
-  //       tap((post) => {
-  //         console.log(post);
-  //         this.router.navigate(['/modify-post', post._id]);
-  //       })
-  //     )
-  //     .subscribe();
-  // }
-  onModify() {
-    this.router.navigate(['/modify-post', this.post._id]);
-  }
-  //Pour la suppression :
-  //Desactiver les boutons si l'id de l'utilisateur
-  //n'est pas pareil que celui du poste (voir apres la fonctionnalité)
-  //-Si l'id de l'utilisateur === userId du post
-  //alors on envoie la requete avec onDelete sur le bouton supprimer
 
-  //Dans postService effectuer notre requete delete avec en params l'id du post
+  onModify() {
+    if (this.connect.isTokenExpired(this.token)) {
+      this.redirecting();
+    } else {
+      console.log('token pas expirer');
+      this.router.navigate(['/modify-post', this.post._id]);
+    }
+  }
+  redirecting() {
+    console.log('Token a expirer');
+    window.confirm('Votre session a expirer vous devez vous reconnecter');
+    localStorage.clear();
+    this.connect.isAuth$.next(false);
+    this.router.navigateByUrl('login');
+  }
 }

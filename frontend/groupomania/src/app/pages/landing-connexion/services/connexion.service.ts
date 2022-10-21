@@ -37,6 +37,7 @@ export class loginSignupService {
   get UserAdmin() {
     return this.isAdmin;
   }
+  token = JSON.stringify(localStorage.getItem('token'));
 
   //test
   getUserIdFromToken(token: string): UserModelId {
@@ -87,7 +88,14 @@ export class loginSignupService {
     this.userId = '';
     this.isAuth$.next(false);
     localStorage.clear();
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('/login');
     console.log('utilisateur deconnecté');
   }
+
+  //test service reset token!!!
+  isTokenExpired(token: string) {
+    const expiry = JSON.parse(atob(token.split('.')[1])).exp;
+    return expiry * 1000 < Date.now();
+  }
+  //NE PAS OUBLIER DE REMETTRE LE TOKEN A 24H!!!!!!!!!!!!!!!!!!!!
 }

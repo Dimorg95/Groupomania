@@ -44,14 +44,13 @@ exports.login = (req, res, next) => {
             });
           }
           res.status(200).json({
-            // userName: user.name,
-            // userEmail: req.body.email,
             userId: user._id,
             isAdmin: user.isAdmin,
             token: jwt.sign(
               { userId: user.id, isAdmin: user.isAdmin },
               process.env.ACCES_SECRET_TOKEN,
-              { expiresIn: '24h' }
+              //test changement expires
+              { expiresIn: '1min' }
             ),
           });
         })

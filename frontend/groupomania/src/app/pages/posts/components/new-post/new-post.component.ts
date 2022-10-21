@@ -109,6 +109,7 @@ export class NewPostComponent implements OnInit {
         )
         .subscribe();
     } else if (this.mode === 'edit') {
+      newPost.userId = this.post.userId;
       //Ici le code pour la modification de post
       this.postService
         .modifyPost(this.post._id, newPost, this.postForm.get('image')!.value)

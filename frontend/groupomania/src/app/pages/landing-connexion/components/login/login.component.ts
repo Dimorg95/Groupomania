@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { loginSignupService } from '../../services/connexion.service';
 import { catchError, delay, EMPTY, tap } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private connect: loginSignupService
+    private connect: loginSignupService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +38,10 @@ export class LoginComponent implements OnInit {
       ],
       isAdmin: [],
     });
+
+    if (localStorage.getItem('token')) {
+      this.router.navigateByUrl('/posts');
+    }
   }
 
   onSubmitLogin() {
