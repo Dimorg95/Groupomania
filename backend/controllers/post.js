@@ -5,35 +5,35 @@ const fs = require('fs');
 exports.createPost = (req, res, next) => {
   const postObject = JSON.parse(req.body.post);
 
-  //let regex = new RegExp(/[a-zA-Z]+$/);
+  let regex = new RegExp(/^\S[A-Za-z0-9 -]*$/);
   //let regex = new RegExp(/[a-zA-Z\s0-9\,\-\.]/);
-  let regex = new RegExp(/\S[\w\s]+$/gm);
+  // let regex = new RegExp(/\S[\w\s]+$/gm);
   console.log(postObject.title);
   console.log(postObject.text);
   console.log(postObject);
-  // if (regex.test(postObject.text) && regex.test(postObject.title)) {
-  delete postObject._id;
-  delete postObject.userId;
+  if (regex.test(postObject.text) && regex.test(postObject.title)) {
+    delete postObject._id;
+    delete postObject.userId;
 
-  const post = new Post({
-    ...postObject,
-    userId: req.auth.userId,
+    const post = new Post({
+      ...postObject,
+      userId: req.auth.userId,
 
-    imageUrl: `${req.protocol}://${req.get('host')}/images/${
-      req.file.filename
-    }`,
-    usersLiked: [],
+      imageUrl: `${req.protocol}://${req.get('host')}/images/${
+        req.file.filename
+      }`,
+      usersLiked: [],
 
-    createdDate: new Date(Date.now()),
-  });
-  console.log(req.auth.userId);
-  post
-    .save()
-    .then(() => res.status(201).json({ message: 'Post crée avec succé' }))
-    .catch((error) => res.status(400).json({ error }));
-  // } else {
-  //   res.status(403).json({ message: 'Verification des champs incorrect' });
-  // }
+      createdDate: new Date(Date.now()),
+    });
+    console.log(req.auth.userId);
+    post
+      .save()
+      .then(() => res.status(201).json({ message: 'Post crée avec succé' }))
+      .catch((error) => res.status(400).json({ error }));
+  } else {
+    res.status(403).json({ message: 'Verification des champs incorrect' });
+  }
 };
 
 // exports.modifyPost = (req, res, next) => {

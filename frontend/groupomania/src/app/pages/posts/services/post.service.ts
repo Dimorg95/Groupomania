@@ -25,17 +25,15 @@ export class PostService {
   infoFromToken!: UserModelId;
 
   constructor(private http: HttpClient, private connect: loginSignupService) {}
-  //exploitation du token
 
-  // this.token = JSON.stringify(localStorage.getItem('token'));
-
-  // this.infoFromToken = this.connect.getUserIdFromToken(this.token);
-  getTest() {
+  //Exploitation du token pour récupérer l'UserId
+  getUserId() {
     this.token = JSON.stringify(localStorage.getItem('token'));
     this.infoFromToken = this.connect.getUserIdFromToken(this.token);
     return this.infoFromToken.userId;
   }
-  //V1
+
+  //Récupération de tous les Posts
   getAllPost(): Observable<Post[]> {
     return this.http.get<Post[]>(`${environment.apiUrl}/posts`).pipe(
       tap((post) => this.posts$.next(post)),
@@ -43,17 +41,14 @@ export class PostService {
     );
   }
 
-  //test delete post
-
+  //Suppression d'un Post
   deletePost(id: string) {
     return this.http
       .delete<{ message: string }>(`${environment.apiUrl}/posts/${id}`)
-      .pipe(
-        // switchMap(() => this.getAllPost()),
-        catchError((error) => throwError(error.error.message))
-      );
+      .pipe(catchError((error) => throwError(error.error.message)));
   }
 
+  //Ajout d'un nouveau Post
   addNewPost(post: Post, image: File) {
     const formData = new FormData();
     formData.append('post', JSON.stringify(post));
@@ -63,10 +58,11 @@ export class PostService {
       .pipe(catchError((error) => throwError(error.error.message)));
   }
 
+  //Ajout d'un like ou enlevement
   likedPost(id: string, like: boolean) {
     return this.http
       .post<{ message: string }>(`${environment.apiUrl}/posts/${id}/like`, {
-        userId: this.getTest(),
+        userId: this.getUserId(),
         like: like ? 1 : 0,
       })
       .pipe(
@@ -75,13 +71,14 @@ export class PostService {
       );
   }
 
-  //test recuperation  un post
+  //Récupération d'un Post
   getOnePost(id: string) {
     return this.http
       .get<Post>(`${environment.apiUrl}/posts/${id}`)
       .pipe(catchError((error) => throwError(error.error.message)));
   }
-  //test modify post
+
+  //Modification de post
   modifyPost(id: string, post: Post, image: string | File) {
     if (typeof image === 'string') {
       return this.http

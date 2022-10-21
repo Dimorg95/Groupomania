@@ -26,17 +26,13 @@ import { userService } from '../../services/user.service';
 })
 export class PostComponent implements OnInit {
   @Input() post!: Post;
-  user!: User; //
-  //test
+  user!: User;
+
   token = '';
   infoFromToken!: UserModelId;
   disableButton!: boolean;
-  // post$!: Observable<Post>;
-  // deleteItem$ = new BehaviorSubject<boolean>(false);
   liked!: boolean;
   likedMessage = '';
-  //test2
-  onPost!: Post;
 
   constructor(
     private postService: PostService,
@@ -47,21 +43,15 @@ export class PostComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.connect.getIsAuth());
-
-    //faire le model user
+    //Récuperation des information User
     this.userService.getOneUser(this.post.userId).subscribe((result) => {
       this.user = result;
     });
-    //test
 
     //recuperation des info du token
     this.token = JSON.stringify(localStorage.getItem('token'));
 
     this.infoFromToken = this.connect.getUserIdFromToken(this.token);
-    // console.log(userIdFromToken.userId);
-    // console.log(this.post.userId);
-    // console.log(this.connect.UserAdmin);
 
     //Je n'arrive pas a la faire marcher dans la fonction en commentaire
 
@@ -94,6 +84,7 @@ export class PostComponent implements OnInit {
       this.likedMessage = this.post.likes + ' utilisateur ont aimé';
     }
   }
+
   //A chaque fonction on verifie que le token n'est pas expirer
   //Fonction qui nous supprime l'article cliquer
   onDelete() {
@@ -116,6 +107,7 @@ export class PostComponent implements OnInit {
         .subscribe();
     }
   }
+  //Ajout/enlevement du like
   onLike() {
     if (this.connect.isTokenExpired(this.token)) {
       this.redirecting();
@@ -140,6 +132,7 @@ export class PostComponent implements OnInit {
     this.dataService.notifyAboutChange();
   }
 
+  //Clique sur le bouton modifier Post
   onModify() {
     if (this.connect.isTokenExpired(this.token)) {
       this.redirecting();
@@ -148,6 +141,8 @@ export class PostComponent implements OnInit {
       this.router.navigate(['/modify-post', this.post._id]);
     }
   }
+
+  //Redirection en cas de Token expirer
   redirecting() {
     console.log('Token a expirer');
     window.confirm('Votre session a expirer vous devez vous reconnecter');

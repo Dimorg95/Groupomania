@@ -25,6 +25,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [AuthGuard],
-  //A rajouter dans les route qui on besoin d'une auth
 })
 export class AppRoutingModule {}

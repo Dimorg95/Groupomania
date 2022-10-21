@@ -40,6 +40,7 @@ export class NewPostComponent implements OnInit {
 
     this.infoFromToken = this.connect.getUserIdFromToken(this.token);
 
+    //Mise en place du formulaire soit vide soit a modifier
     this.route.params
       .pipe(
         switchMap((params) => {
@@ -63,34 +64,50 @@ export class NewPostComponent implements OnInit {
       .subscribe();
   }
 
+  //Regex de validation des champs
+  validationRegex = /^\S[A-Za-z0-9 -]*$/;
+  //Initialisation du formulaire de post vide
   initEmptyForm() {
     this.postForm = this.formBuilder.group({
-      title: [null, Validators.required],
-      text: [null, Validators.required],
+      title: [
+        null,
+        [Validators.required, Validators.pattern(this.validationRegex)],
+      ],
+      text: [
+        null,
+        [Validators.required, Validators.pattern(this.validationRegex)],
+      ],
       image: [null, Validators.required],
     });
     this.imagePreview = '';
   }
 
+  //Initialisation du formulaire de post modification
   initModifyForm(post: Post) {
     this.postForm = this.formBuilder.group({
-      title: [post.title, Validators.required],
-      text: [post.text, Validators.required],
+      title: [
+        post.title,
+        [Validators.required, Validators.pattern(this.validationRegex)],
+      ],
+      text: [
+        post.text,
+        [Validators.required, Validators.pattern(this.validationRegex)],
+      ],
       image: [post.imageUrl, Validators.required],
     });
     this.imagePreview = post.imageUrl;
   }
 
+  //Au clique sur le bouton de validation
   onSubmitForm() {
     this.loading = true;
     console.log(this.postForm.value);
     const newPost = new Post();
     newPost.title = this.postForm.get('title')!.value;
     newPost.text = this.postForm.get('text')!.value;
-    //changer cette methode et recuperer le userId du token ?
-    // newPost.userId = this.connect.getUserId();
     newPost.userId = this.infoFromToken.userId;
-    console.log(newPost.userId);
+
+    //Ici le code pour la création de post
     if (this.mode === 'new') {
       this.postService
         .addNewPost(newPost, this.postForm.get('image')!.value)
@@ -108,9 +125,10 @@ export class NewPostComponent implements OnInit {
           })
         )
         .subscribe();
+      //Ici le code pour la modification de post
     } else if (this.mode === 'edit') {
       newPost.userId = this.post.userId;
-      //Ici le code pour la modification de post
+
       this.postService
         .modifyPost(this.post._id, newPost, this.postForm.get('image')!.value)
         .pipe(
@@ -129,9 +147,6 @@ export class NewPostComponent implements OnInit {
         .subscribe();
     }
   }
-  //Probleme avec les requete de modification voir avec arthur
-  //Via le back 1er methode tourne dans le vide
-  //2eme methode effectue bien les changement mais impossible de visualiser le post modifier !
 
   //Gestion et previsualisation de l'image
   onFileAdded(event: Event) {

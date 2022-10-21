@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 export class userService {
   constructor(private http: HttpClient) {}
 
+  //Recupération d'un seul User
   getOneUser(userId: string): Observable<User> {
     return this.http.get<User>(`${environment.apiUrl}/auth/${userId}`);
   }

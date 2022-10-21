@@ -12,7 +12,6 @@ import { PostService } from '../../services/post.service';
   styleUrls: ['./post-list.component.scss'],
 })
 export class PostListComponent implements OnInit {
-  //v1
   posts$!: Observable<Post[]>;
 
   //Recuperation depuis post component pour actualiser la page a la supression
@@ -26,30 +25,26 @@ export class PostListComponent implements OnInit {
     private dataService: DataService,
     private connect: loginSignupService
   ) {}
-  //test
+  //Récupération du token depuis le Local storage
   token = JSON.stringify(localStorage.getItem('token'));
 
   ngOnInit(): void {
     //V1
     this.posts$ = this.postService.getAllPost();
 
-    //test detection si le token est toujour valide
+    //Au retour de l'utilisateur connecter on verifie si le token est Valide
     if (this.connect.isTokenExpired(this.token)) {
       this.redirecting();
     } else {
       console.log('token pas expirer');
     }
-    //Pourquoi pas mettre dans un service et l'appeller sur les deux composant post
-    //et carement les mettre en place sur les requete like/delete et modify en mode condition
-    //si le token n'a pas expirer alors on lance la fonction
-    //sinon pop up votre session a expirer tous reset et rediriger au login
   }
-
   //On unsubscribe a la notification
   ngOnDestroy() {
     this.notifierSubscription.unsubscribe();
   }
 
+  //Redirection vers le formulaire des Posts si Token valide
   onClickNewPost() {
     if (this.connect.isTokenExpired(this.token)) {
       this.redirecting();
@@ -57,7 +52,7 @@ export class PostListComponent implements OnInit {
       this.router.navigateByUrl('new-post');
     }
   }
-
+  //Redirection en cas de token expiré
   redirecting() {
     console.log('token a expirer');
     window.confirm('Votre session a expirer vous devez vous reconnecter');

@@ -2,13 +2,6 @@
 @import "../../../../../Scss/variables";
 @import "../../../../../Scss/placeholder";
 
-// .mainContainer {
-//   @include center-item;
-//   width: 50rem;
-//   height: 100%;
-//   background: rgb(187, 160, 109);
-// }
-
 .newPostForm {
   @extend %center-item;
   width: 90%;
@@ -80,7 +73,3 @@ input[type="file"] {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-
-// .submit-button {
-//   font-size: 1.8rem;
-// }
