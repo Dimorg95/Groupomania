@@ -49,7 +49,13 @@ Télécharger le fichier zip ou dans la console
 ## Lancement du serveur (Via console)
 
 > `cd backend`(Dirige la console dans le dossier backend)
-> `npm install`(Installation de toute les dependance + node_modules)
-> `npm install nodemon`(Installation de nodemon server _non obligatoire_)
-> `nodemon server`(Lancement du serveur si nodemon est installer)
-> **OU** `node server`(Lancement du serveur si nodemon n'est pas installer)
+
+`npm install`(Installation de toute les dependance + node_modules)
+
+`npm install nodemon`(Installation de nodemon server _non obligatoire_)
+
+`nodemon server`(Lancement du serveur si nodemon est installer)
+
+**OU**
+
+> `node server`(Lancement du serveur si nodemon n'est pas installer)
