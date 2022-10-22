@@ -12,6 +12,7 @@ import { loginSignupService } from '../pages/landing-connexion/services/connexio
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private connect: loginSignupService) {}
 
+  //Recupere le token du back pour crée le header authorization
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
