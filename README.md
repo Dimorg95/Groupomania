@@ -35,7 +35,8 @@ _Groupomania est la premiere version d'un réseaux social d'entreprise_
 
 ## Cloner/télécharger le repository:
 
-Télécharger le fichier zip ou dans la console
+Télécharger le fichier zip ou dans la console:
+
 `git clone https://github.com/Dimorg95/Groupomania.git`
 
 ## Création de fichier/dossier a la racine du dossier backend
@@ -48,7 +49,7 @@ Télécharger le fichier zip ou dans la console
 
 ## Lancement du serveur (Via console)
 
-> `cd backend`(Dirige la console dans le dossier backend)
+`cd backend`(Dirige la console dans le dossier backend)
 
 `npm install`(Installation de toute les dependance + node_modules)
 
@@ -58,4 +59,6 @@ Télécharger le fichier zip ou dans la console
 
 **OU**
 
-> `node server`(Lancement du serveur si nodemon n'est pas installer)
+`node server`(Lancement du serveur si nodemon n'est pas installer)
+
+# [color=#26b260]Frontend[/color]
