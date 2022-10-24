@@ -1,5 +1,7 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
+//Verification si les mdp et les adresse email sont pareil
+
 export function confirmEqualValidator(
   main: string,
   confirm: string

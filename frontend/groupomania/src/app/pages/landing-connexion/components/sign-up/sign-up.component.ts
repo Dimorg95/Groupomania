@@ -140,7 +140,7 @@ export class SignUpComponent implements OnInit {
     } else if (ctrl.hasError('email')) {
       return "Merci d'entrer une adresse mail valide";
     } else if (ctrl.hasError('pattern')) {
-      return 'Mot de passe incorrect: M, m, 0-9 et 8 caractère minimum';
+      return 'Mot de passe incorrect: M, m, 0-9 et 8 caractères minimum';
     } else {
       return 'Ce champ contient une erreur';
     }
@@ -155,7 +155,7 @@ export class SignUpComponent implements OnInit {
     this.connect
       .userSignUp(name, email, password, isAdmin)
       .pipe(
-        delay(1500),
+        delay(3000),
         switchMap(() => this.connect.userLogin(email, password, isAdmin)),
         tap((saved) => {
           this.loading = false;

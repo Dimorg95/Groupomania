@@ -87,5 +87,4 @@ export class loginSignupService {
     const expiry = JSON.parse(atob(token.split('.')[1])).exp;
     return expiry * 1000 < Date.now();
   }
-  //NE PAS OUBLIER DE REMETTRE LE TOKEN A 24H!!!!!!!!!!!!!!!!!!!!
 }

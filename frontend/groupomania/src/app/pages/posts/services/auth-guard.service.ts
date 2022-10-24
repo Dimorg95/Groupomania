@@ -8,6 +8,8 @@ import {
 import { Observable, tap, take } from 'rxjs';
 import { loginSignupService } from '../../landing-connexion/services/connexion.service';
 
+//Guard qui nous permet de verifier si l'utilisateur peut accéder a certaine page du site
+
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(private router: Router, private connect: loginSignupService) {
