@@ -38,7 +38,7 @@
         >Les deux adresses ne correspondent pas</small
       >
     </mat-card>
-    <mat-card class="form-card" [formGroup]="passwordForm">
+    <mat-card class="form-card password-card" [formGroup]="passwordForm">
       <mat-card-subtitle>Mots de passe</mat-card-subtitle>
       <div class="form-row">
         <mat-form-field appearance="fill">
@@ -54,7 +54,7 @@
           }}</mat-error>
         </mat-form-field>
       </div>
-      <small class="error-txt" *ngIf="showPasswordError$ | async"
+      <small class="error-txt txt-password" *ngIf="showPasswordError$ | async"
         >Les mots de passe ne correspondent pas</small
       >
     </mat-card>

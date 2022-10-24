@@ -10,7 +10,7 @@
   background: $background-connexion;
   height: 50rem;
   @include mobile {
-    height: 60rem;
+    height: 66rem;
   }
   .mat-card-title {
     text-align: center;
@@ -50,11 +50,18 @@ mat-form-field {
   margin: 20px 0;
   text-align: center;
   height: 8rem;
+
   @include mobile {
-    height: 13rem;
+    height: 15rem;
   }
 }
 
+.password-card {
+  height: 10rem;
+  @include mobile {
+    height: 15rem;
+  }
+}
 .center-mobile {
   @include mobile {
     display: flex;
@@ -103,6 +110,10 @@ mat-card-actions {
   margin-right: 10px;
 }
 
+.txt-password {
+  display: block;
+  margin-top: 13px;
+}
 .mat-spinner {
   @extend %center-item;
 }

@@ -53,18 +53,16 @@ export class PostComponent implements OnInit {
 
     this.infoFromToken = this.connect.getUserIdFromToken(this.token);
 
-    //Je n'arrive pas a la faire marcher dans la fonction en commentaire
-
     //Si l'userId du post correspond a l'userId du token alors on active les buttons
     //sinon on les desactive
     if (
       this.post.userId === this.infoFromToken.userId ||
       this.infoFromToken.isAdmin === true
     ) {
-      console.log('Les userId correspond');
+      console.log('Les userId correspondent');
       this.disableButton = true;
     } else {
-      console.log('Les userId ne correponde pas');
+      console.log('Les userId ne correpondent pas');
       this.disableButton = false;
     }
 
@@ -81,7 +79,7 @@ export class PostComponent implements OnInit {
     if (this.post.likes === 1) {
       this.likedMessage = this.post.likes + ' utilisateur à aimé';
     } else {
-      this.likedMessage = this.post.likes + ' utilisateur ont aimé';
+      this.likedMessage = this.post.likes + ' utilisateurs ont aimé';
     }
   }
 

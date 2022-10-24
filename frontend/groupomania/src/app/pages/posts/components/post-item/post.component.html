@@ -8,7 +8,7 @@
     </div>
     <div class="underline">
       <p>
-        Mise en ligne par <span>{{ user.name }}</span>
+        Mise en ligne par <span>{{ user.name | titlecase }}</span>
         {{ post.createdDate | date: "le dd MMMM yyyy à HH:mm" }}
       </p>
     </div>
