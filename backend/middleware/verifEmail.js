@@ -6,3 +6,5 @@ module.exports = (req, res, next) => {
   };
   validEmail(req.body.email);
 };
+
+//Regex et verification du champ email

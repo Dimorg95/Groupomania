@@ -10,3 +10,5 @@ const postSchema = mongoose.Schema({
   usersLiked: [String],
 });
 module.exports = mongoose.model('Post', postSchema);
+
+//Model des postes

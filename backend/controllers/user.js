@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 require('dotenv').config();
 
-//test enregistrement utilisateur
+//Inscription
 
 exports.signup = (req, res, next) => {
   //Chiffrage du mdp
@@ -26,6 +26,7 @@ exports.signup = (req, res, next) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
+//Connexion
 exports.login = (req, res, next) => {
   User.findOne({ email: req.body.email })
     .then((user) => {
@@ -59,7 +60,7 @@ exports.login = (req, res, next) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
-//getUser  prendre exemple sur getOneSauce
+//Récupérer un utilisateur
 
 exports.getOneUser = (req, res, next) => {
   console.log(req.params.id);
