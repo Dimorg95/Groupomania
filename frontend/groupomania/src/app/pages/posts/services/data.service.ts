@@ -9,3 +9,5 @@ export class DataService {
     this.eventEmitterNotifier.emit();
   }
 }
+
+//Event de notification pour l'actualisation de la page Post-List

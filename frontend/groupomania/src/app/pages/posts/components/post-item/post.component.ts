@@ -1,16 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  catchError,
-  EMPTY,
-  switchMap,
-  tap,
-  pipe,
-  take,
-  Observable,
-  BehaviorSubject,
-  map,
-} from 'rxjs';
+import { catchError, EMPTY, tap, map } from 'rxjs';
 import { loginSignupService } from 'src/app/pages/landing-connexion/services/connexion.service';
 import { Post } from '../../models/post.model';
 import { User } from '../../models/user.model';
@@ -33,7 +23,7 @@ export class PostComponent implements OnInit {
   disableButton!: boolean;
   liked!: boolean;
   likedMessage = '';
-
+  dateFr!: any;
   constructor(
     private postService: PostService,
     private router: Router,
@@ -78,13 +68,16 @@ export class PostComponent implements OnInit {
     //Ajustage du texte par rapport au like
     if (this.post.likes === 1) {
       this.likedMessage = this.post.likes + ' utilisateur à aimé';
+    } else if (this.post.likes === 0) {
+      this.likedMessage = '';
     } else {
-      this.likedMessage = this.post.likes + ' utilisateurs ont aimé';
+      this.likedMessage = this.post.likes + ' utilisateurs ont aimés';
     }
   }
 
   //A chaque fonction on verifie que le token n'est pas expirer
   //Fonction qui nous supprime l'article cliquer
+
   onDelete() {
     if (this.connect.isTokenExpired(this.token)) {
       this.redirecting();

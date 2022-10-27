@@ -29,7 +29,6 @@ export class PostListComponent implements OnInit {
   token = JSON.stringify(localStorage.getItem('token'));
 
   ngOnInit(): void {
-    //V1
     this.posts$ = this.postService.getAllPost();
 
     //Au retour de l'utilisateur connecter on verifie si le token est Valide
