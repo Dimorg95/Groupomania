@@ -95,31 +95,31 @@ Télécharger le fichier zip ou dans la console:
 
 ---
 
-# Fonctionnalités disponible
+# Fonctionnalités disponibles
 
-- Inscription via formulaire (Nom, Email, Mot de passe)
+- Inscription via formulaire (Nom, Email, Mots de passe)
 - Connexion via formulaire (Email, Mot de passe)
 - Visualisation des postes de l'ensemble des utilisateurs (ordre: Antéchronologique)
 - Création et partage de postes
 - Chaque utilisateur peut modifier ou supprimer leur poste respectif
 - Chaque utilisateur peut liker les postes (ou retirer son like)
 
-  **Un compte Administrateur est a disposition pour modifier/supprimer n'importe quel poste et en crée si nécéssaire**
+  **Un compte Administrateur est a disposition pour modifier/supprimer n'importe quel poste et en crée si nécessaire**
 
 ---
 
 # Aspect techniques/sécurités
 
-- Les sessions utlisateurs persistent pendant 24h, au terme l'utilisateur doit ce reconnecter
-- Sécurité implanté sur les requétes en cas de session expirée
-- Mots de passe cryptés en base de donnée
-- Multiples vérification au niveaux des formulaires (inscription/post)
+- Les sessions utilisateurs persistent pendant 24h, au terme l'utilisateur doit ce reconnecter
+- Sécurité implantée sur les requêtes en cas de session expirée
+- Mots de passe cryptés en base de données
+- Multiples vérifications au niveau des formulaires (inscription/post)
 
 ---
 
 # Identité graphique
 
-- Police d'écriture Lata
+- Police d'écriture Lato
 - Palette de couleur
   - Primaire: #FD2D01
   - Secondaire: #FFD7D7
