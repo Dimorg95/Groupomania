@@ -41,6 +41,7 @@ export class NewPostComponent implements OnInit {
     this.infoFromToken = this.connect.getUserIdFromToken(this.token);
 
     //Mise en place du formulaire soit vide soit a modifier
+    //Si aucun id dans l'url alors newForm sinon modifyForm
     this.route.params
       .pipe(
         switchMap((params) => {
@@ -50,6 +51,7 @@ export class NewPostComponent implements OnInit {
             return EMPTY;
           } else {
             this.mode = 'edit';
+            //On récupere les donnée du post par rapport a l'id de l'url
             return this.postService.getOnePost(params['id']);
           }
         }),
@@ -66,7 +68,8 @@ export class NewPostComponent implements OnInit {
 
   //Regex de validation des champs
   validationRegex = /^\S[A-Za-z0-9 -]*$/;
-  //Initialisation du formulaire de post vide
+
+  //Initialisation du formulaire de post vide (new post)
   initEmptyForm() {
     this.postForm = this.formBuilder.group({
       title: [
@@ -82,7 +85,7 @@ export class NewPostComponent implements OnInit {
     this.imagePreview = '';
   }
 
-  //Initialisation du formulaire de post modification
+  //Initialisation du formulaire de post modification(modifyPost)
   initModifyForm(post: Post) {
     this.postForm = this.formBuilder.group({
       title: [
@@ -126,6 +129,7 @@ export class NewPostComponent implements OnInit {
           })
         )
         .subscribe();
+
       //Ici le code pour la modification de post
     } else if (this.mode === 'edit') {
       newPost.userId = this.post.userId;

@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   constructor(private connect: loginSignupService) {}
 
   ngOnInit(): void {
+    //Si is Auth$ est true(user connecté) un bouton deconnexion apparais
     this.isAuth$ = this.connect.isAuth$.pipe(shareReplay(1));
   }
 

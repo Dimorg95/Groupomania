@@ -18,6 +18,9 @@ export class loginSignupService {
   private authToken = '';
   private userId = '';
   private isAdmin!: boolean;
+
+  //A la connexion il passe a true et maintient le status du toute les pages
+  //jusqu'au logout ou expiration de session
   isAuth$ = new BehaviorSubject<boolean>(false);
 
   getIsAuth() {
@@ -64,8 +67,8 @@ export class loginSignupService {
           this.isAdmin = isAdmin;
           //enregistrer le token dans le local storage
           localStorage.setItem('token', this.authToken);
+          //isAuth$ qui passe a true
           this.isAuth$.next(true);
-
           this.user = this.getUserIdFromToken(token);
           this.router.navigateByUrl('/posts');
         })

@@ -50,7 +50,7 @@ exports.login = (req, res, next) => {
             token: jwt.sign(
               { userId: user.id, isAdmin: user.isAdmin },
               process.env.ACCES_SECRET_TOKEN,
-              //test changement expires
+
               { expiresIn: '24h' }
             ),
           });

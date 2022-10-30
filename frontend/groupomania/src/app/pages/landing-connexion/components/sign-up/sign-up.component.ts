@@ -152,11 +152,15 @@ export class SignUpComponent implements OnInit {
     const email = this.mainForm.value.email.email;
     const password = this.mainForm.value.password.password;
     const isAdmin = this.mainForm.value.isAdmin;
+    //Signup
     this.connect
       .userSignUp(name, email, password, isAdmin)
       .pipe(
         delay(3000),
-        switchMap(() => this.connect.userLogin(email, password, isAdmin)),
+        switchMap(() =>
+          //Login dans la foulé
+          this.connect.userLogin(email, password, isAdmin)
+        ),
         tap((saved) => {
           this.loading = false;
 
@@ -173,6 +177,7 @@ export class SignUpComponent implements OnInit {
       .subscribe();
   }
 
+  //On reset le formulaire pour le garder au propre
   resetForm() {
     this.mainForm.reset();
   }

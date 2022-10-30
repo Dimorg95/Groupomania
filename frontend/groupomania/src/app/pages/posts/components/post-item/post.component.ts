@@ -15,6 +15,7 @@ import { userService } from '../../services/user.service';
   styleUrls: ['./post.component.scss'],
 })
 export class PostComponent implements OnInit {
+  //On recupere les donnée du parent pour les mettres en place
   @Input() post!: Post;
   user!: User;
 
@@ -23,7 +24,7 @@ export class PostComponent implements OnInit {
   disableButton!: boolean;
   liked!: boolean;
   likedMessage = '';
-  dateFr!: any;
+
   constructor(
     private postService: PostService,
     private router: Router,
@@ -49,14 +50,12 @@ export class PostComponent implements OnInit {
       this.post.userId === this.infoFromToken.userId ||
       this.infoFromToken.isAdmin === true
     ) {
-      console.log('Les userId correspondent');
       this.disableButton = true;
     } else {
-      console.log('Les userId ne correpondent pas');
       this.disableButton = false;
     }
 
-    //Verification si l'utilisateur enregistrer a like un ou plusieurs post
+    //Verification si l'utilisateur a enregistrer a like un ou plusieurs post
     if (
       this.post.usersLiked.find((user) => user === this.infoFromToken.userId)
     ) {
@@ -75,7 +74,7 @@ export class PostComponent implements OnInit {
     }
   }
 
-  //A chaque fonction on verifie que le token n'est pas expirer
+  //A chaque fonction on verifie que le token n'est pas expirer si oui redirection
   //Fonction qui nous supprime l'article cliquer
 
   onDelete() {
@@ -118,7 +117,7 @@ export class PostComponent implements OnInit {
         .subscribe();
     }
   }
-  //Notification de changement pour rechargement de la page post-list
+  //Notification de changement pour rappelle des posts de la page post-list
   notifyForChange() {
     this.dataService.notifyAboutChange();
   }
@@ -128,7 +127,7 @@ export class PostComponent implements OnInit {
     if (this.connect.isTokenExpired(this.token)) {
       this.redirecting();
     } else {
-      console.log('token pas expirer');
+      //Nous envoi sur le formulaire avec l'id du post cliquer
       this.router.navigate(['/modify-post', this.post._id]);
     }
   }

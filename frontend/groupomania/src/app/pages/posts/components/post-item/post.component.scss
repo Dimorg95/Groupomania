@@ -15,6 +15,9 @@
   @include laptop {
     height: 50rem;
   }
+  @include mobile {
+    height: 60rem;
+  }
 }
 
 .createInfo {

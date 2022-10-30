@@ -4,3 +4,5 @@ export class User {
   email!: string;
   isAdmin!: boolean;
 }
+
+//model des users

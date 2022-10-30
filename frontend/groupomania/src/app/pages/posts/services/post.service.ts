@@ -78,7 +78,7 @@ export class PostService {
       .pipe(catchError((error) => throwError(error.error.message)));
   }
 
-  //Modification de post
+  //Modification de post sans image ou avec
   modifyPost(id: string, post: Post, image: string | File) {
     if (typeof image === 'string') {
       return this.http

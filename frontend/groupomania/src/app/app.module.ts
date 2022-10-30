@@ -18,6 +18,8 @@ import { PostComponent } from './pages/posts/components/post-item/post.component
 import { NewPostComponent } from './pages/posts/components/new-post/new-post.component';
 import { PostService } from './pages/posts/services/post.service';
 import * as fr from '@angular/common/locales/fr';
+import { DataService } from './pages/posts/services/data.service';
+import { userService } from './pages/posts/services/user.service';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import * as fr from '@angular/common/locales/fr';
   providers: [
     loginSignupService,
     PostService,
+    DataService,
+    userService,
     httpInterceptorProviders,
     { provide: LOCALE_ID, useValue: 'fr-FR' },
   ],
@@ -48,6 +52,7 @@ import * as fr from '@angular/common/locales/fr';
 })
 export class AppModule {
   constructor() {
+    //Locale de Angular regler en FR
     registerLocaleData(fr.default);
   }
 }

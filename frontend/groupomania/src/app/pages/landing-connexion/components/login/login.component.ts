@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
       isAdmin: [],
     });
 
+    //Si le token du user est present on l'empeche de revenir sur login
     if (localStorage.getItem('token')) {
       this.router.navigateByUrl('/posts');
     }

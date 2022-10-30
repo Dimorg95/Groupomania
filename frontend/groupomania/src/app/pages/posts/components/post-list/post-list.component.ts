@@ -14,7 +14,7 @@ import { PostService } from '../../services/post.service';
 export class PostListComponent implements OnInit {
   posts$!: Observable<Post[]>;
 
-  //Recuperation depuis post component pour actualiser la page a la supression
+  //Recuperation depuis post component pour actualiser la page a la supression/like
   notifierSubscription: Subscription =
     this.dataService.eventEmitterNotifier.subscribe((notified) => {
       this.posts$ = this.postService.getAllPost();
@@ -29,6 +29,7 @@ export class PostListComponent implements OnInit {
   token = JSON.stringify(localStorage.getItem('token'));
 
   ngOnInit(): void {
+    //Recuperation des post
     this.posts$ = this.postService.getAllPost();
 
     //Au retour de l'utilisateur connecter on verifie si le token est Valide
