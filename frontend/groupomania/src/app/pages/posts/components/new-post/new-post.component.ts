@@ -80,7 +80,7 @@ export class NewPostComponent implements OnInit {
         null,
         [Validators.required, Validators.pattern(this.validationRegex)],
       ],
-      image: [null, Validators.required],
+      image: [null],
     });
     this.imagePreview = '';
   }
@@ -96,7 +96,7 @@ export class NewPostComponent implements OnInit {
         post.text,
         [Validators.required, Validators.pattern(this.validationRegex)],
       ],
-      image: [post.imageUrl, Validators.required],
+      image: [post.imageUrl],
     });
     this.imagePreview = post.imageUrl;
   }

@@ -81,10 +81,19 @@ export class PostService {
   //Modification de post sans image ou avec
   modifyPost(id: string, post: Post, image: string | File) {
     if (typeof image === 'string') {
+      console.log('If typeOf string');
+      return this.http
+        .put<{ message: string }>(`${environment.apiUrl}/posts/${id}`, post)
+        .pipe(catchError((error) => throwError(error.error.message)));
+      //ELSE IF EN TEST PAR RAPPORT AU BACK
+      //Fonctionnel
+    } else if (image === null) {
+      console.log('else if typ of null');
       return this.http
         .put<{ message: string }>(`${environment.apiUrl}/posts/${id}`, post)
         .pipe(catchError((error) => throwError(error.error.message)));
     } else {
+      console.log('Else');
       const formData = new FormData();
       formData.append('post', JSON.stringify(post));
       formData.append('image', image);
