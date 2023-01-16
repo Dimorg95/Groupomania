@@ -8,11 +8,66 @@ import { UserModelId } from '../../models/userId.model';
 import { DataService } from '../../services/data.service';
 import { PostService } from '../../services/post.service';
 import { userService } from '../../services/user.service';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+  useAnimation,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
+
+  animations: [
+    //Premier bouton
+    trigger('modifyButtonHover', [
+      state(
+        'normal',
+        style({
+          backgroundColor: '#fd2d01',
+          color: 'black',
+          transform: 'scale(1)',
+        })
+      ),
+      state(
+        'hover',
+        style({
+          backgroundColor: '#4e5166',
+          color: 'white',
+          transform: 'scale(1.1)',
+        })
+      ),
+
+      transition('normal => hover', animate('300ms ease-in')),
+      transition('hover => normal', animate('300ms ease-out')),
+    ]),
+    //Deuxieme bouton
+    trigger('deleteButtonHover', [
+      state(
+        'normal',
+        style({
+          backgroundColor: '#4e5166',
+          color: 'white',
+          transform: 'scale(1)',
+        })
+      ),
+      state(
+        'hover',
+        style({
+          backgroundColor: '#fd2d01',
+          color: 'black',
+          transform: 'scale(1.1)',
+        })
+      ),
+
+      transition('normal => hover', animate('300ms ease-in')),
+      transition('hover => normal', animate('300ms ease-out')),
+    ]),
+  ],
 })
 export class PostComponent implements OnInit {
   //On recupere les donnée du parent pour les mettres en place
@@ -72,6 +127,26 @@ export class PostComponent implements OnInit {
     } else {
       this.likedMessage = this.post.likes + ' utilisateurs ont aimés';
     }
+  }
+  //Gestion animation bouton
+
+  modifyButtonState = 'normal';
+  deleteButtonState = 'normal';
+
+  onModifyButtonHover() {
+    this.modifyButtonState = 'hover';
+  }
+
+  onModifyButtonLeave() {
+    this.modifyButtonState = 'normal';
+  }
+
+  onDeleteButtonHover() {
+    this.deleteButtonState = 'hover';
+  }
+
+  onDeleteButtonLeave() {
+    this.deleteButtonState = 'normal';
   }
 
   //A chaque fonction on verifie que le token n'est pas expirer si oui redirection

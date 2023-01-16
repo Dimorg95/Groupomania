@@ -109,14 +109,23 @@ img {
 }
 
 .actionButtons {
-  width: 13rem;
+  width: 15rem;
+  margin-right: 1rem;
   @extend %flex-row-between;
   @include mobile {
     margin-top: 1.5rem;
+    margin-right: 0;
   }
   button {
-    background-color: $tertiary-color;
-    color: white;
+    width: 7rem;
+    height: 2.5rem;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    border-radius: 20px;
+    border: 2px solid #1e212b;
+    font-size: 1.1rem;
   }
 }
 
