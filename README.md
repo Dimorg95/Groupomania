@@ -100,7 +100,9 @@ Télécharger le fichier zip ou dans la console:
 - Inscription via formulaire (Nom, Email, Mots de passe)
 - Connexion via formulaire (Email, Mot de passe)
 - Visualisation des postes de l'ensemble des utilisateurs (ordre: Antéchronologique)
-- Création et partage de postes
+- Création et partage de poste avec ou sans image
+- Les postes sans image peuvent en rajouter une a la modification
+- Les postes avec image ne peuvent pas simplement enlever l'image et garder leur poste une suppression est nécessaire
 - Chaque utilisateur peut modifier ou supprimer leur poste respectif
 - Chaque utilisateur peut liker les postes (ou retirer son like)
 
